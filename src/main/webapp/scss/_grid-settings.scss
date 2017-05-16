@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-May-2016, 8:39:13 AM
+    Author     : fred
+*/
+@import "bourbon/bourbon"; // or "bourbon" when in Rails
+//@import "neat/neat-helpers"; // or "neat-helpers" when in Rails
+@import "my-variables";
+
+
+// Change the grid settings
+$column: 90px;
+$gutter: 10px;
+$grid-columns: 12;
+$max-width: $site-max-width;
+
+// Define your breakpoints
+$tablet: new-breakpoint(max-width 768px 8);
+$mobile: new-breakpoint(max-width 480px 4);
+// from https://github.com/18F/web-design-standards/blob/18f-pages-staging/src/stylesheets/core/_grid-settings.scss
+$small-screen:  481px;
+$medium-screen: 600px;
+$large-screen:  1201px;
+
+$large: new-breakpoint(min-width $large-screen 12);
+$medium: new-breakpoint(min-width $medium-screen 6);
+$small: new-breakpoint(min-width $small-screen 1);

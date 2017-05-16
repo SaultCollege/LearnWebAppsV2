@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/ex2.css">
+        <link rel="stylesheet" type="text/css" href="css/my.css">
+        <link rel="stylesheet" type="text/css" href="css/modal.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='js/Dialog.js'></script>
+        <script src='js/Person.js'></script>
+        <script src='js/util.js'></script>
+        <script>
+            var people = []; // global cars array
+            var dbName = "PersonDatabase";
+            var db;
+        </script>
+    </head>
+    <body>
+        <div class="outer-grid">
+            <div style="background-color: #CCDDFF" class="outer-grid">
+            <div style="background-color: #CCDDFF" class="outer-grid-item">
+                Header
+            </div>
+            </div>
+            <div style="background-color:  #CCCCCC" class="outer-grid-item">
+                <div style="background-color:  #CCCCCC" class="sidebar-layout">
+                    <div style="background-color: #ddd" class="sidebar-layout__sidebar">
+                        sidebar
+                    </div>
+                    <div style="background-color: yellowgreen" class="sidebar-layout__main">
+                        <div style="background-color: #71A1FF" class="main">
+                            <div style="background-color: aquamarine" class="main__item_col-1">
+                                <button onclick="newPerson()">New Person</button>
+                            </div>
+                            <div style="background-color: aquamarine" class="main__item_col-6">
+                                Stuff
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid" style="min-height: 100px;">
+            <div style="" class="col-3">Learn Javascript</div>
+            <div style="" class="col-9">
+                <h1>App</h1>
+            </div>
+        </div>
+        <div class="grid">
+            <div style="" class="col-3">Menu</div>
+            <div style="" class="col-9">
+                <div class="grid">
+                    <div style="" class="col-6">
+                        
+                    </div>
+                </div>
+                <div class="grid">
+                    <div id="content" class="col-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function newPerson() {
+                var d = new Dialog(uuid(), newPersonHandler, new Person(uuid()));
+                d.showModal();
+            }
+            function newPersonHandler(e) {
+                var person = e.detail;
+
+//                console.log(person);
+                people.push(person);
+                people.forEach(function (item, index, array) {
+                    console.log(item, index, item.uuid);
+                });
+
+                person.modal.closeModal();
+
+                var container = document.getElementById('content');
+                var view = person.getView();
+                container.appendChild(view);
+
+            }
+            function edit(id) {
+                var person2Edit = people.find(findPersonById);
+                function findPersonById(person) {
+                    return person.uuid === id;
+                }
+                var modal = new Dialog(uuid(), updatePersonHandler, person2Edit);
+                modal.showModal();
+            }
+
+            function updatePersonHandler(e) {
+                var person = e.detail;
+                person.modal.closeModal();
+
+                var container = document.getElementById('content');
+                var view = person.getView();
+                container.appendChild(view);
+                /*
+                 var id = e.srcElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+                 fields = document.getElementById(id).getElementsByTagName('input');
+                 var fields = document.getElementById(id).getElementsByTagName('input');
+                 var image = fields[0].value;
+                 var make = fields[1].value;
+                 var model = fields[2].value;
+                 var year = fields[3].value;
+                 var person2Edit = persons.find(findPersonById);
+                 function findPersonById(person) {
+                 return person.uuid === id;
+                 }
+                 person2Edit.make = make;
+                 person2Edit.model = model;
+                 person2Edit.year = year;
+                 
+                 var oldNode = document.getElementById(id).parentNode.replaceChild(person2Edit.getView(), document.getElementById(id));
+                 */
+            }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,175 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-May-2016, 8:21:20 AM
+    Author     : fred
+*/
+
+@import "bourbon/bourbon";
+@import "grid-settings";
+@import "neat/neat";
+@import "base/base";
+@import "my-variables";
+
+.grid {
+  @include grid-container;
+}
+.col-1 {
+  @include grid-column(1);
+}
+.col-1_5 {
+  @include grid-column(1.5);
+}
+.col-2 {
+  @include grid-column(2);
+}
+.col-2_5 {
+  @include grid-column(2.5);
+}
+.col-3 {
+  @include grid-column(3);
+}
+.col-4 {
+  @include grid-column(4);
+}
+.col-5 {
+  @include grid-column(5);
+}
+.col-6 {
+  @include grid-column(6);
+}
+.col-7 {
+  @include grid-column(7);
+}
+.col-8 {
+  @include grid-column(8);
+}
+.col-9 {
+  @include grid-column(9);
+}
+.col-10 {
+  @include grid-column(10);
+}
+.col-11 {
+  @include grid-column(11);
+}
+.col-12 {
+  @include grid-column(12);
+}
+
+
+.default-neat-grid {
+  @include grid-container;
+}
+
+.default-neat-grid__a-single-column {
+  @include grid-column(1);
+}
+
+/* Nested grids http://neat.bourbon.io/examples/ */
+$outer-grid: (
+  columns: 1,
+  gutter: 160px,
+);
+.outer-grid {
+  @include grid-container;
+}
+.outer-grid .header {
+  @include grid-column(1, $outer-grid);
+  color: black;
+}
+.outer-grid-item {
+  @include grid-column(1, $outer-grid);
+  color: black;
+}
+.outer-grid .footer {
+  @include grid-column(1, $outer-grid);
+  color: blue;
+  text-align: center;
+}
+$sidebar-layout: (
+  columns: 6,
+  gutter: 40px,
+);
+
+$main: (
+  columns: 6,
+  gutter: 40px,
+);
+
+.sidebar-layout {
+  @include grid-container;
+}
+
+.sidebar-layout__sidebar {
+  @include grid-column(1, $sidebar-layout);
+}
+
+.sidebar-layout__main {
+  @include grid-column(5, $sidebar-layout);
+}
+
+.main {
+  @include grid-collapse($main);
+  @include grid-container;
+}
+
+.main__item_col-1 {
+  @include grid-column(1, $main);
+  margin-bottom: 1rem;
+}
+
+.main__item_col-2 {
+  @include grid-column(2, $main);
+  margin-bottom: 1rem;
+}
+
+.main__item_col-3 {
+  @include grid-column(3, $main);
+  margin-bottom: 1rem;
+}
+
+.main__item_col-4 {
+  @include grid-column(4, $main);
+  margin-bottom: 1rem;
+}
+
+.main__item_col-5 {
+  @include grid-column(5, $main);
+  margin-bottom: 1rem;
+}
+
+.main__item_col-6 {
+  @include grid-column(6, $main);
+  margin-bottom: 1rem;
+}
+
+
+$grid2: (
+  columns: 3,
+  gutter: 40px,
+);
+.grid2{
+  @include grid-collapse($grid2);
+  @include grid-container;
+}
+.grid2__item {
+  @include grid-column(1, $grid2);
+  margin-bottom: 1rem;
+}
+
+$custom-grid--thirds: (
+  columns: 3,
+  gutter: 60px,
+);
+
+.custom-grid--thirds {
+  @include grid-container;
+}
+
+.custom-grid--thirds__a-single-column {
+  @include grid-column(1, $custom-grid--thirds);
+}
