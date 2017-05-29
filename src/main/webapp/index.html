@@ -24,7 +24,10 @@
             </div>
             <div style='background-color: skyblue' class="outer-grid-item">
                 <div class="grid">
-                    <div style='background-color: threedface' class="col-2">Nav</div>
+                    <div style='background-color: threedface' class="col-2">
+                        <div><a href='index.html'>index</a></div>
+                        <div><a href='genjs.html'>genjs</a></div>
+                    </div>
                     <div style='background-color: skyblue' class="col-10">
                         <div style='background-color: threedface' class="col-2">
                             <button onclick="newPerson()">New Person</button>
@@ -35,11 +38,25 @@
                             <button onclick="deleteSelected()">Delete Selected</button>
                         </div>
                         <div id='content' style='background-color: threedface' class="col-12">
+                            <div id="some-id" class="grid">
+                                <div class="col-4 image">
+                                    <img src="images/app/undefined" width="300">
+                                </div>
+                                <div class="col-3 firstname">example</div>
+                                <div class="col-3 lastname">example</div>
+                                <div class="col-2 checkbox">
+                                    <input class="selected" id="some-id2" type="checkbox">
+                                    <i class="material-icons" onclick="edit('some-id')">mode_edit</i>
+                                </div>
+                            </div>
+
 
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
 
 
@@ -48,20 +65,20 @@
             function deleteSelected() {
                 var selected = document.getElementsByClassName('selected');
 //                console.log(selected);
-                var toDelete=[];
+                var toDelete = [];
                 for (var i = 0, len = selected.length; i < len; i++) {
-                    if(selected[i].checked){
-                        console.log('delete '+selected[i].getAttribute('id'));
-                        var id=selected[i].getAttribute('id');
-                        id=id.substring(2,id.length);
+                    if (selected[i].checked) {
+                        console.log('delete ' + selected[i].getAttribute('id'));
+                        var id = selected[i].getAttribute('id');
+                        id = id.substring(2, id.length);
 //                        alert(id);
-                        var el=document.getElementById(id);
+                        var el = document.getElementById(id);
                         toDelete.push(el);
                     }
                 }
                 for (var i = 0, len = toDelete.length; i < len; i++) {
-                        var parent=toDelete[i].parentNode;
-                        parent.removeChild(toDelete[i]);
+                    var parent = toDelete[i].parentNode;
+                    parent.removeChild(toDelete[i]);
                 }
 
             }
@@ -102,7 +119,7 @@
                 var container = document.getElementById('content');
                 var id = person.uuid;
                 var oldNode = document.getElementById(id).parentNode.replaceChild(person.getView(), document.getElementById(id));
-                
+
             }
         </script>
 

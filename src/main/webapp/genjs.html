@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/bourbon-neat-bitters.css">
+        <link rel="stylesheet" type="text/css" href="css/my.css">
+        <link rel="stylesheet" type="text/css" href="css/modal.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='js/Dialog.js'></script>
+        <script src='js/Person.js'></script>
+        <script src='js/util.js'></script>
+        <script>
+            var people = []; // global cars array
+            var dbName = "PersonDatabase";
+            var db;
+        </script>
+    </head>
+    <body>
+        <div style="background-color: #00d4ff" class="outer-grid">
+            <div style="background-color: #CCDDFF" class="outer-grid-item">
+                Header
+            </div>
+            <div style='background-color: skyblue' class="outer-grid-item">
+                <div class="grid">
+                    <div style='background-color: threedface' class="col-2">
+                        <div><a href='index.html'>index</a></div>
+                        <div><a href='genjs.html'>genjs</a></div>
+                    </div>
+                    <div style='background-color: skyblue' class="col-10">
+                        <div style='background-color: threedface' class="col-2">
+                            <button onclick="gen()">gen</button>
+                        </div>
+                        <div style='background-color: threedface' class="col-1">
+                        </div>
+                        <div style='background-color: threedface' class="col-2">
+                            <button onclick="clr()">clear</button>
+                        </div>
+                        <div id='content' style='background-color: threedface' class="col-12">
+                            <div id="some-id" class="grid">
+                                <div class="col-6 ip">
+                                    <textarea id='ip' rows="4" cols="50"></textarea>
+                                </div>
+                                <div class="col-6 op">
+                                    <textarea id='op' rows="4" cols="50"></textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <script>
+            function clr() {
+                var ip = document.getElementById('ip');
+                ip.value = '';
+            }
+            function gen() {
+                //https://stackoverflow.com/questions/3028490/calling-a-java-servlet-from-javascript
+                //https://stackoverflow.com/questions/19424313/sending-data-from-javascript-to-servlet
+                var ip = document.getElementById('ip');
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        var data = xhr.responseText;
+                        var op = document.getElementById('op');
+                        op.value = data;
+//                        alert(data);
+                    }
+                }
+                xhr.open('POST', 'genjs', true);
+                xhr.send(ip.value);
+
+            }
+        </script>
+
+    </body>
+</html>

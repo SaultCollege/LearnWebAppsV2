@@ -23,7 +23,7 @@ function Person(uuid, firstname, lastname, image) {
     };
 
     this.update = function (id) {
-        // populate the properties with the values entered in the dialog box
+        // populate the properties with the values entered in the input elements contained in the element with id, 'id'
         var fields = document.getElementById(id).getElementsByTagName('input');
         var img = fields[0].value;
         // image uses the \ file separator and will be of the form c:\fakepath\filename.type in windows
