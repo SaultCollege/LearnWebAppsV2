@@ -98,30 +98,11 @@
                 var person = e.detail;
                 person.modal.closeModal();
 
-                var container = document.getElementById('content');
-                var view = person.getView();
-//                container.appendChild(view);
                 console.log(person);
+                var container = document.getElementById('content');
                 var id = person.uuid;
                 var oldNode = document.getElementById(id).parentNode.replaceChild(person.getView(), document.getElementById(id));
-                /*
-                 var id = e.srcElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
-                 fields = document.getElementById(id).getElementsByTagName('input');
-                 var fields = document.getElementById(id).getElementsByTagName('input');
-                 var image = fields[0].value;
-                 var make = fields[1].value;
-                 var model = fields[2].value;
-                 var year = fields[3].value;
-                 var person2Edit = persons.find(findPersonById);
-                 function findPersonById(person) {
-                 return person.uuid === id;
-                 }
-                 person2Edit.make = make;
-                 person2Edit.model = model;
-                 person2Edit.year = year;
-                 
-                 var oldNode = document.getElementById(id).parentNode.replaceChild(person2Edit.getView(), document.getElementById(id));
-                 */
+                
             }
         </script>
 

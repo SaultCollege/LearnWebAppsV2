@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/bourbon-neat-bitters.css">
+        <link rel="stylesheet" type="text/css" href="css/my.css">
+        <link rel="stylesheet" type="text/css" href="css/modal.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='js/Dialog.js'></script>
+        <script src='js/Person.js'></script>
+        <script src='js/util.js'></script>
+        <script>
+            var people = []; // global cars array
+            var dbName = "PersonDatabase";
+            var db;
+        </script>
+
+        <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDaRQpLokE9Idy4aUPtr5aNtyT0vCTYulA",
+                authDomain: "lyrical-shore-808.firebaseapp.com",
+                databaseURL: "https://lyrical-shore-808.firebaseio.com",
+                projectId: "lyrical-shore-808",
+                storageBucket: "lyrical-shore-808.appspot.com",
+                messagingSenderId: "418084857665"
+            };
+            firebase.initializeApp(config);
+        </script>        
+    </head>
+    <body>
+        <div style="background-color: whitesmoke" class="outer-grid">
+            <div style="background-color: #CCCCCC" class="outer-grid-item">
+                Firebase
+            </div>
+            <div style='' class="outer-grid-item">
+                <div class="grid">
+                    <div style='' class="col-2">Nav</div>
+                    <div style='' class="col-10">
+                        <div style='' class="col-2">
+                            <button onclick="signIn()">Google Signin...</button>
+                        </div>
+                        <div style='' class="col-1">
+                        </div>
+                        <div style='' class="col-2">
+                        </div>
+                        <div id='content' style='' class="col-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            function signIn() {
+                var provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithPopup(provider).then(function (result) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    var token = result.credential.accessToken;
+                    // The signed-in user info.
+                    var user = result.user;
+                    // ...
+                    console.log('Ok, signed in with ' + user);
+                    
+                    var user = firebase.auth().currentUser;
+                    var name, email, photoUrl, uid, emailVerified;
+
+                    if (user !== null) {
+                        name = user.displayName;
+                        email = user.email;
+                        photoUrl = user.photoURL;
+                        emailVerified = user.emailVerified;
+                        uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                        // this value to authenticate with your backend server, if
+                        // you have one. Use User.getToken() instead.
+                        console.log(name+' is logged in');
+                        var tokens=name.split(" ");
+                        var p=new Person(uuid(), tokens[0], tokens[1]);
+                        document.getElementById('content').appendChild(p.getView());
+                    }
+                    
+                }).catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+                    console.log('here 2');
+                });
+            }
+        </script>
+
+    </body>
+</html>

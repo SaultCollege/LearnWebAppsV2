@@ -40,6 +40,8 @@ and open the template in the editor.
 .col-4 {
   @include grid-column(4);
   margin-bottom: 1rem;
+  min-width: 200px;
+  max-width: 200px;
 }
 .col-5 {
   @include grid-column(5);

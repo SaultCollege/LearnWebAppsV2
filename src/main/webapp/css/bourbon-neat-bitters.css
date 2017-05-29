@@ -281,7 +281,9 @@ body {
   width: calc(33.33333% - 26.66667px);
   float: left;
   margin-left: 20px;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  min-width: 200px;
+  max-width: 200px; }
 
 .col-5 {
   width: calc(41.66667% - 28.33333px);

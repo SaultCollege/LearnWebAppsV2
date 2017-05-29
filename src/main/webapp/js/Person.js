@@ -22,7 +22,7 @@ function Person(uuid, firstname, lastname, image) {
         return this.uuid+'--> '+this.firstname + ', ' + this.lastname + ', ' + this.image;
     };
 
-    this.getObject = function (id) {
+    this.update = function (id) {
         // populate the properties with the values entered in the dialog box
         var fields = document.getElementById(id).getElementsByTagName('input');
         var img = fields[0].value;
@@ -99,8 +99,6 @@ function Person(uuid, firstname, lastname, image) {
 
         divLastnameRow.appendChild(divLastnameCol1);
         divLastnameRow.appendChild(divLastnameCol2);
-
-
 
         container.appendChild(divImageRow);
         container.appendChild(divFirstnameRow);

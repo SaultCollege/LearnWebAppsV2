@@ -57,8 +57,8 @@ function Dialog(uuid, onClicksubmitFunction, object) {
     this.onClicksubmitFunction2 = function () {
         var fields = document.getElementById(uuid).getElementsByTagName('input');
         console.log('pp'+fields);
-        // you MUST call object.getObject() to update object properties with new user input
-        var obj=object.getObject(uuid);
+        // you MUST call object.update() to update object properties with new user input
+        var obj=object.update(uuid);
         
         var event = new CustomEvent('build', {'detail': object});
         // Listen for the event.
