@@ -13,6 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  *
@@ -35,22 +39,31 @@ public class genjs extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String line = "";
-            String jsonString = new String(); // this is your data sent from client
+            String html = new String(); // this is your data sent from client
             BufferedReader reader = request.getReader();
             while ((line = reader.readLine()) != null) {
-                jsonString += line;
+                html += line;
             }
+            Document doc = Jsoup.parseBodyFragment(html);
+            Element body = doc.body();
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
+/*            out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet genjs</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet genjs at " + request.getContextPath() + "</h1>");
-            out.println("<h2>" + jsonString + "</h2>");
+            out.println("<h2>" + "hello" + "</h2>");
             out.println("</body>");
             out.println("</html>");
+            out.println(html);
+            for(Element e:ls){
+                out.println(e);
+            }
+*/
+                out.println(body);
+
         }
     }
 

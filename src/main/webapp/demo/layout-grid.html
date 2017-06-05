@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Layout Grid - Material Components</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+        <style>
+            .hero .demo-cell {
+                height: 60px;
+            }
+            .demo-cell {
+                box-sizing: border-box;
+                background-color: #666666;
+                height: 200px;
+                padding: 8px;
+                color: white;
+
+                font-size: 1.5em;
+            }
+            html{
+                --mdc-layout-grid-gutter: 20px;
+                --mdc-layout-grid-margin: 8px;
+            }
+            .max-width {
+                max-width: 1600px;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="mdc-toolbar mdc-toolbar--fixed">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <span class="catalog-back">
+                        <a href="/"><i class="material-icons">&#xE5C4;</i></a>
+                    </span>
+                    <span class="mdc-toolbar__title catalog-title">Layout Grid</span> 
+                    <span class="">
+            <a href="https://material-components-web.appspot.com/layout-grid.html" class="mdc-toolbar__icon--menu">demo</a>
+          </span>
+                    
+                </section>
+            </div>
+        </header>
+        <main class="mdc-typography">
+            <div class="mdc-toolbar-fixed-adjust"></div>
+            <section class="hero">
+                <div class="">Grid with max width and center alignment</div>
+                <div class="mdc-layout-grid max-width">
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-4"></div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-4"></div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-4"></div>
+                </div>
+
+                <div class="demo-grid mdc-layout-grid">
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+                        <div><a href='../index.html'>index</a></div>
+                        <div><a href='../genjs.html'>genjs</a></div>
+                        <div><a href='../firebase.html'>firebase</a></div>
+                        <div>Material</div>
+                        <div><a href='../material.html'>material</a></div>
+                        <div><a href='../demo/layout-grid.html'>layout-grid</a></div>
+                    </div>
+                </div>
+                <div class="demo-grid mdc-layout-grid">
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-2">x<br/>x<br/><br/>x<br/></div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-2">x</div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-2">x</div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-2">x</div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-2">x</div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-2">x</div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-2">x</div>
+                </div>
+                <div class="demo-grid mdc-layout-grid">
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-1">x</div>
+                </div>
+                <div class="demo-grid-legend">Grid of items with tweaks at different screen sizes</div>
+                <div class="demo-grid mdc-layout-grid">
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">6 (8 tablet)</div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-6-tablet">4 (6 tablet)</div>
+                    <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mdc-layout-grid__cell--span-4-phone">2 (4 phone)</div>
+                </div>
+            </section>
+        </main>
+
+    </body>
+</html>
