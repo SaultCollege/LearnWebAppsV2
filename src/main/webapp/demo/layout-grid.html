@@ -39,23 +39,33 @@
                 --mdc-layout-grid-margin: 8px;
             }
             .max-width {
-                max-width: 1600px;
+                max-width: 1400px;
             }
         </style>
     </head>
     <body>
-        <header class="mdc-toolbar mdc-toolbar--fixed">
+        <header class="mdc-toolbar">
             <div class="mdc-toolbar__row">
                 <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
                     <span class="catalog-back">
                         <a href="/"><i class="material-icons">&#xE5C4;</i></a>
                     </span>
                     <span class="mdc-toolbar__title catalog-title">Layout Grid</span> 
-                    <span class="">
-            <a href="https://material-components-web.appspot.com/layout-grid.html" class="mdc-toolbar__icon--menu">demo</a>
-          </span>
-                    
+                    <section class="mdc-toolbar__section">
+                        Section aligns to center.
+                    </section>
+                    <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+                        Section aligns to end.
+                    </section>
                 </section>
+            </div>
+            <div class="mdc-toolbar__row">
+                <div style="padding-right: 20px;">
+                    <a href="https://material-components-web.appspot.com/layout-grid.html" class="mdc-toolbar__icon--menu">Demo</a>
+                </div>
+                <div style="padding-right: 20px;">
+                    <a href="https://material.io/components/web/catalog/layout-grids/" class="mdc-toolbar__icon--menu">Grids Docs</a>
+                </div>
             </div>
         </header>
         <main class="mdc-typography">

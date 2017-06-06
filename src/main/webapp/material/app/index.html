@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>layouts: ex1.html</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="../../node_modules/material-components-web/dist/material-components-web.css">
+        <style>
+            .grid1 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 16px;
+                background-color: #bbbbbb;
+            }
+            .cell_style1{
+                background-color: #cccccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell cell_style12">cell 12</div>
+        </div>
+<header class="mdc-toolbar">
+  <div class="mdc-toolbar__row">
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <h1 class="header__title">Weather PWA</h1>
+    </section>
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+            <button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
+            <button id="butAdd" class="headerButton" aria-label="Add"></button>
+    </section>
+      
+  </div>
+</header>
+    </body>
+</html>

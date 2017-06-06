@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>layouts: ex1.html</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="../../node_modules/material-components-web/dist/material-components-web.css">
+        <style>
+            .grid1 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 16px;
+                background-color: #bbbbbb;
+            }
+            .cell_style1{
+                background-color: #cccccc;
+            }
+            .grid2 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 15px;
+                background-color: #ffaaaa;
+            }
+            .cell_style2{
+                background-color: #ffcccc;
+            }
+            .grid3 {
+                --mdc-layout-grid-margin: 55px;
+                --mdc-layout-grid-gutter: 24px;
+                background-color: #aaffaa;
+            }
+            .grid4 {
+                --mdc-layout-grid-margin: 10px;
+                --mdc-layout-grid-gutter: 6px;
+                background-color: #aaaaff;
+            }
+            .cell_style3{
+                background-color: #ccffcc;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h1>Layouts Example 1</h1>
+            </div>
+        </div>
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div><a href='https://material.io/components/web/catalog/layout-grids/'>Documentation...</a></div>
+            </div>
+        </div>
+
+
+        <div class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell cell_style1">cell 1</div>
+            <div class="mdc-layout-grid__cell cell_style1">cell 1</div>
+            <div class="mdc-layout-grid__cell cell_style1">cell 1</div>
+        </div>
+        <div class="mdc-layout-grid grid2">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 cell_style2">cell span 12 (12 cell default)</div>
+            <div class="mdc-layout-grid__cell cell_style1">cell 1</div>
+            <div class="mdc-layout-grid__cell cell_style1">cell 1</div>
+            <div class="mdc-layout-grid__cell cell_style1">cell 1</div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 cell_style3">cell span 6</div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 cell_style3">cell span 4</div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 cell_style3">cell span 2</div>
+        </div>
+        <div class="mdc-layout-grid grid3">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 cell_style3">cell span 6</div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 cell_style3">cell span 4</div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 cell_style3">cell span 2</div>
+        </div>
+        <div class="mdc-layout-grid grid4">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__cell cell_style1">
+                        <div class="mdc-layout-grid grid3">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 cell_style3">cell span 6</div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 cell_style3">cell span 4</div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 cell_style3">cell span 2</div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell cell_style1">cell 1</div>
+                    <div class="mdc-layout-grid__cell cell_style1">cell 1</div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
