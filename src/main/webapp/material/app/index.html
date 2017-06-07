@@ -11,32 +11,63 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"
               href="../../node_modules/material-components-web/dist/material-components-web.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
         <style>
             .grid1 {
                 --mdc-layout-grid-margin: 40px;
                 --mdc-layout-grid-gutter: 16px;
-                background-color: #bbbbbb;
+                background-color: #ff;
             }
             .cell_style1{
-                background-color: #cccccc;
+                background-color: whitesmoke;
+            }
+            #butRefresh{
+                background: url(/LearnWebAppsV2/material/app/images/ic_refresh_white_24px.svg) center center no-repeat;
+            }
+            #butAdd{
+                background: url(/LearnWebAppsV2/material/app/images/ic_add_white_24px.svg) center center no-repeat;
+            }
+            .headerButton{
+                width: 24px;
+                height: 24px;
+                margin-right: 16px;
+                text-indent: -30000px;
+                overflow: hidden;
+                opacity: 0.54;
+                -webkit-transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
+                transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
+                border: none;
+                outline: none;
+                cursor: pointer;
             }
         </style>
     </head>
-    <body>
+    <body class="mdc-typography">
+        <header class="mdc-toolbar">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <h1 class="header__title">Weather PWA</h1>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+                    <button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
+                    <button id="butAdd" class="headerButton" aria-label="Add"></button>
+                </section>
+            </div>
+        </header>
         <div class="mdc-layout-grid grid1">
-            <div class="mdc-layout-grid__cell cell_style12">cell 12</div>
+            <div class="cell_style1 mdc-layout-grid__cell mdc-layout-grid__cell--span-12  mdc-layout-grid__cell--span-4-phone">span-1 span-4-phone</div>
         </div>
-<header class="mdc-toolbar">
-  <div class="mdc-toolbar__row">
-    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-            <h1 class="header__title">Weather PWA</h1>
-    </section>
-    <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
-            <button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
-            <button id="butAdd" class="headerButton" aria-label="Add"></button>
-    </section>
-      
-  </div>
-</header>
+        <div class="loader">
+            <svg viewBox="0 0 32 32" width="32" height="32">
+            <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+            </svg>
+        </div>
+                <div class="dialog-buttons">
+                    <button id="butAddCity" class="button">Add</button>
+                    <button id="butAddCancel" class="button">Cancel</button>
+                </div>
+        <!-- Uncomment the line below when ready to test with fake data -->
+        <script src="scripts/app.js" async></script>
+
     </body>
 </html>
