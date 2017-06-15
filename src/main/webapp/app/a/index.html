@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>carquery</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="../../node_modules/material-components-web/dist/material-components-web.css">
+        <script src="../../js/libs/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+        <style>
+            .grid1 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 16px;
+                background-color: #eeeeee;
+            }
+            .grid2 {
+                --mdc-layout-grid-margin: 2px;
+                --mdc-layout-grid-gutter: 1px;
+            }
+            .cell_style1{
+                background-color: #cccccc;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    </head>
+    <body class="mdc-typography">
+        <header class="mdc-toolbar">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <h1 class="header__title">Car Query API</h1>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+                    <div class="mdc-layout-grid grid2">
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-phone">From:<div id='fromYear'></div></div>
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-phone">To:<div id='toYear'></div></div>
+                    </div>
+                </section>
+            </div>
+        </header>        
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div><a href='http://www.carqueryapi.com/documentation/api-usage/'>Documentation...</a></div>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div><a href='https://material.io/resizer/'>Test with Resizer @ https://192.168.1.13:8181/LearnWebAppsV2/material/layouts/ex2.html</a></div>
+            </div>
+
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h1 class="mdc-typography--title mdc-typography--adjust-margin">http://www.carqueryapi.com/documentation/api-usage/</h1>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h1 class="mdc-typography--title mdc-typography--adjust-margin">$.getJSON(carquery.base_url + "?callback=?", {cmd: "getMakes", year: "2009"}, function (data)</h1>
+            </div>
+        </div>
+        <h2 class="mdc-typography--title">Car Queries</h2>
+        <select class="mdc-select mdl-list" id='pickQuery'>
+            <option value="" selected>Pick a Car query</option>
+            <option value="getYears">GetYears</option>
+            <option value="getMakes">GetMakes</option>
+            <option value="getModels">GetModels</option>
+            <option value="getTrims">GetTrims</option>
+            <option value="getModel">GetModel</option>
+        </select>
+        <div id='selected'></div>
+
+
+        <div id='yearSelect' class="mdc-layout-grid grid1">
+        </div>
+        <div id='content' class="mdc-layout-grid grid1">
+        </div>
+
+        <script>
+            hideAll();
+            $("#pickQuery").change(function () {
+                getQuery(this.value);
+            });
+            //Create a variable for the CarQuery object.  You can call it whatever you like.
+            var carquery = new CarQuery();
+//            alert(carquery.base_url);
+
+            //Run the carquery init function to get things started:
+            carquery.init();
+            getYears();
+            function hideAll() {
+                $("#yearSelect").hide();
+            }
+            function getYearSelect() {
+                var from = $('#fromYear').html();
+                var to = $('#toYear').html();
+                var e = "<select class='mdc-select' id='pickYear'>" +
+                        "<option value='' selected>Pick a Year</option>";
+                for (var i = from; i < to; i++) {
+                    e += "<option value='" + i + "'>" + i + "</option>";
+                }
+                /*
+                 var e = "<select class='mdc-select' id='pickYear'>" +
+                 "<option value='' selected>Pick a Year</option>" +
+                 "<option value='1941'>1941</option>" +
+                 "<option value='1942'>1942</option>" +
+                 "<option value='1943'>1943</option>" +
+                 "<option value='1944'>1944</option>" +
+                 "<option value='1945'>1945</option>" +
+                 "</select>";
+                 */
+                var e1 = $(e);
+//                $("#content").append(e1);
+                return e1;
+            }
+            function getQuery(query) {
+                hideAll();
+                if (query === 'getYears')
+                    getYears();
+                if (query === 'getMakes')
+                    getMakes();
+                if (query === 'getModels')
+                    getModels();
+                if (query === 'getTrims')
+                    getTrims();
+                if (query === 'getModel')
+                    getModel();
+            }
+
+            function getYears() {
+                $("#content").empty();
+                var cmd = 'getYears';
+                $.getJSON(carquery.base_url + "?callback=?", {cmd: cmd}, function (data) {
+                    p(data);
+                    $('#fromYear').text(data.Years.min_year);
+                    $('#toYear').text(data.Years.max_year);
+                });
+            }
+            /*p(d) - recursive function to display properties of an object*/
+            function p(d) {
+                $.each(d, function (key, value) {
+                    if (typeof value === 'object') {
+                        console.log(key, "{");
+                        var e3 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-2-phone'>" + key + "</div>");
+                        $("#content").append(e3);
+                        $("#content").append(e4);
+                        p(value);
+                    } else {
+                        console.log(key, ": ", value);
+                        var e3 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mdc-layout-grid__cell--span-2-phone'>" + key + "</div>");
+                        var e4 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-10 mdc-layout-grid__cell--span-2-phone'>" + value + "</div>");
+                        $("#content").append(e3);
+                        $("#content").append(e4);
+                    }
+                });
+            }
+            ;
+            function getMakes() {
+                var e0 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-2-phone'></div>");
+                var e1 = getYearSelect();
+                $(e0).append(e1);
+                $("#yearSelect").show();
+                $("#yearSelect").empty();
+                $("#yearSelect").append(e0);
+                $("#pickYear").change(function () {
+                    getMakes2(this.value);
+                });
+                $("#content").empty();
+            }
+            function getMakes2(year) {
+                $("#content").empty();
+                $.getJSON(carquery.base_url + "?callback=?", {cmd: "getMakes", year: "" + year}, function (data) {
+                    p(data);
+                });
+            }
+        </script>
+    </body>
+</html>

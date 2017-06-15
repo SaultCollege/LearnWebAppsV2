@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>firebaseui-auth</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="../../node_modules/material-components-web/dist/material-components-web.css">
+        <script src="../../js/libs/jquery/jquery.min.js"></script>
+        <!-- install firebaseui -->
+        <script src="https://cdn.firebase.com/libs/firebaseui/2.1.1/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.1.1/firebaseui.css" />
+        <!-- add firebase to app https://console.firebase.google.com/u/0/project/lyrical-shore-808/overview-->
+        <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
+
+        <!-- Leave out Storage -->
+        <!-- <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script> -->
+        <script>
+            // Initialize Firebase 
+            var config = {
+                apiKey: "AIzaSyDaRQpLokE9Idy4aUPtr5aNtyT0vCTYulA",
+                authDomain: "lyrical-shore-808.firebaseapp.com",
+                databaseURL: "https://lyrical-shore-808.firebaseio.com",
+                projectId: "lyrical-shore-808",
+                storageBucket: "lyrical-shore-808.appspot.com",
+                messagingSenderId: "418084857665"
+            };
+            firebase.initializeApp(config);
+        </script>
+
+        <script src="https://cdn.firebase.com/libs/firebaseui/2.1.1/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.1.1/firebaseui.css" />
+        <script type="text/javascript">
+            // FirebaseUI config.
+            var uiConfig = {
+                signInSuccessUrl: 'index.html',
+                signInOptions: [
+                    // Leave the lines as is for the providers you want to offer your users.
+                    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+                    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                    firebase.auth.PhoneAuthProvider.PROVIDER_ID
+                ],
+                // Terms of service url.
+                tosUrl: 'https://www.google.com'
+            };
+
+            // Initialize the FirebaseUI Widget using Firebase.
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
+            // The start method will wait until the DOM is loaded.
+            ui.start('#firebaseui-auth-container', uiConfig);
+        </script>        
+        <style>
+            .grid1 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 16px;
+                background-color: #eeeeee;
+            }
+            .grid2 {
+                --mdc-layout-grid-margin: 2px;
+                --mdc-layout-grid-gutter: 1px;
+            }
+            .cell_style1{
+                background-color: #cccccc;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    </head>
+    <body class="mdc-typography">
+        <header class="mdc-toolbar">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <h1 class="header__title">Firebase UI - Auth</h1>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+                    <div class="mdc-layout-grid grid2">
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-phone">From:<div id='fromYear'></div></div>
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-phone">To:<div id='toYear'></div></div>
+                    </div>
+                </section>
+            </div>
+        </header>        
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div><a href='https://github.com/firebase/firebaseui-web'>Documentation...</a></div>
+            </div>
+        </div>
+        <div class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h1>Welcome to My Awesome App</h1>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div id="firebaseui-auth-container"></div>
+            </div>    
+        </div>    
+        <div class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><h1 class="mdc-typography--title mdc-typography--adjust-margin">Object</h1></div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+            </div>
+        </div>
+        <div id='content' class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><h1 class="mdc-typography--title mdc-typography--adjust-margin">Output</h1></div>
+
+        </div>
+
+        <script>
+        </script>
+    </body>
+</html>

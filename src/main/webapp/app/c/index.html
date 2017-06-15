@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>firebaseui-auth</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="../../node_modules/material-components-web/dist/material-components-web.css">
+        <script src="../../js/libs/jquery/jquery.min.js"></script>
+        <!-- install firebaseui -->
+        <script src="https://cdn.firebase.com/libs/firebaseui/2.1.1/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.1.1/firebaseui.css" />
+        <!-- add firebase to app https://console.firebase.google.com/u/0/project/lyrical-shore-808/overview-->
+        <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
+
+        <script src="https://apis.google.com/js/api.js"></script>
+
+        <script>
+            // Initialize Firebase 
+            var config = {
+                apiKey: "AIzaSyDaRQpLokE9Idy4aUPtr5aNtyT0vCTYulA",
+                authDomain: "lyrical-shore-808.firebaseapp.com",
+                databaseURL: "https://lyrical-shore-808.firebaseio.com",
+                projectId: "lyrical-shore-808",
+                storageBucket: "lyrical-shore-808.appspot.com",
+                messagingSenderId: "418084857665"
+            };
+            firebase.initializeApp(config);
+        </script>
+
+        <style>
+            .grid1 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 16px;
+                background-color: #eeeeee;
+            }
+            .grid2 {
+                --mdc-layout-grid-margin: 2px;
+                --mdc-layout-grid-gutter: 1px;
+            }
+            .cell_style1{
+                background-color: #cccccc;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+        <script type="text/javascript">
+            initApp = function () {
+                firebase.auth().onAuthStateChanged(function (user) {
+                    if (user) {
+                        // User is signed in.
+                        var displayName = user.displayName;
+                        var email = user.email;
+                        var emailVerified = user.emailVerified;
+                        var photoURL = user.photoURL;
+                        var uid = user.uid;
+                        var phoneNumber = user.phoneNumber;
+                        var providerData = user.providerData;
+                        user.getToken().then(function (accessToken) {
+                            document.getElementById('sign-in-status').textContent = 'Signed in';
+                            document.getElementById('sign-in').innerHTML = "<span>Sign out</span>";
+                            document.getElementById('sign-in').addEventListener('click', signout2);
+                            document.getElementById('account-details').textContent = JSON.stringify({
+                                displayName: displayName,
+                                email: email,
+                                emailVerified: emailVerified,
+                                phoneNumber: phoneNumber,
+                                photoURL: photoURL,
+                                uid: uid,
+                                accessToken: accessToken,
+                                providerData: providerData
+                            }, null, '  ');
+                        });
+                        gapi.load('client', start);
+                    } else {
+                        // User is signed out.
+                        document.getElementById('sign-in-status').textContent = 'Signed out';
+                        document.getElementById('sign-in').innerHTML = "<a href='signin.html'>Signin...</a>";
+                        document.getElementById('account-details').textContent = 'null';
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
+            };
+
+            window.addEventListener('load', function () {
+                initApp();
+            });
+
+            function start() {
+                // Client ID and API key from the Developer Console
+                var CLIENT_ID = '418084857665-n1tk7nc4emc2mj4b8qg3vlioto2rj1qk.apps.googleusercontent.com';
+
+                // Array of API discovery doc URLs for APIs used by the quickstart
+                var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
+
+                // Authorization scopes required by the API; multiple scopes can be
+                // included, separated by spaces.
+                var SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
+
+                gapi.client.init({
+                    discoveryDocs: DISCOVERY_DOCS,
+                    clientId: CLIENT_ID,
+                    scope: SCOPES
+                }).then(function () {
+                    listLabels();
+                    listMessages();
+                });
+            }
+            function listMessages() {
+                gapi.client.gmail.users.messages.list({
+                    'userId': 'me'
+                }).then(function (response) {
+                    console.log(response.result.messages[0]);
+                    var e3 = $('<div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><h1 class="mdc-typography--title mdc-typography--adjust-margin">Output: gapi.client.gmail.users.messages.list</h1></div>');
+                    $("#content").append(e3);
+
+                    p(response);
+                });
+            }
+            /*p(d) - recursive function to display properties of an object*/
+            function p(d) {
+                $.each(d, function (key, value) {
+                    if (typeof value === 'object') {
+                        console.log(key, "{");
+                        var e3 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-2-phone'>" + key + "</div>");
+                        $("#content").append(e3);
+                        $("#content").append(e4);
+                        p(value);
+                    } else {
+                        console.log(key, ": ", value);
+                        var e3 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mdc-layout-grid__cell--span-2-phone'>" + key + "</div>");
+                        var e4 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-10 mdc-layout-grid__cell--span-2-phone'>" + value + "</div>");
+                        $("#content").append(e3);
+                        $("#content").append(e4);
+                    }
+                });
+            }
+            ;
+
+            /**
+             * Print all Labels in the authorized user's inbox. If no labels
+             * are found an appropriate message is printed.
+             */
+            function listLabels() {
+                gapi.client.gmail.users.labels.list({
+                    'userId': 'me'
+                }).then(function (response) {
+                    var labels = response.result.labels;
+                    console.log('Labels:');
+                    var e1 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-2-phone'>" + "Labels:" + "</div>");
+                    $("#content").append(e1);
+
+                    if (labels && labels.length > 0) {
+                        for (i = 0; i < labels.length; i++) {
+                            var label = labels[i];
+                            console.log(label.name)
+                            e1 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-2-phone'>" + label.name + "</div>");
+                            $("#content").append(e1);
+                        }
+                    } else {
+                        console.log('No Labels found.');
+                        e1 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-2-phone'>" + "No Labels found." + "</div>");
+                        $("#content").append(e1);
+                    }
+                });
+            }
+
+            function signout2() {
+                firebase.auth().signOut().then(function () {
+                    console.log('Signed Out');
+                    $('#content').empty();
+                }, function (error) {
+                    console.error('Sign Out Error', error);
+                    $('#content').empty();
+                });
+                /*                */
+            }
+        </script>
+    </head>
+    <body class="mdc-typography">
+        <header class="mdc-toolbar">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <h1 class="header__title">Firebase UI - Auth with call to gmail api</h1>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+                    <div class="mdc-layout-grid grid2">
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><div id='sign-in'></div></div>
+                    </div>
+                </section>
+            </div>
+        </header>        
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div><a href='https://github.com/firebase/firebaseui-web'>Documentation...</a></div>
+            </div>
+        </div>
+        <div class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><h1 class="mdc-typography--title mdc-typography--adjust-margin">Object</h1></div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h1>Welcome to My Awesome App</h1>
+                <div id="sign-in-status"></div>
+                <div id="sign-ins"></div>
+                <div id="account-details"></div>
+            </div>
+        </div>
+        <div id='content' class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><h1 class="mdc-typography--title mdc-typography--adjust-margin">Output: gmail api list labels</h1></div>
+
+        </div>
+
+        <script>
+        </script>
+    </body>
+</html>

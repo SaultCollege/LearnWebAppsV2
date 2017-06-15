@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>objects</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="../../node_modules/material-components-web/dist/material-components-web.css">
+        <script src="../../js/libs/jquery/jquery.min.js"></script>
+        <style>
+            .grid1 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 16px;
+                background-color: #eeeeee;
+            }
+            .grid2 {
+                --mdc-layout-grid-margin: 2px;
+                --mdc-layout-grid-gutter: 1px;
+            }
+            .cell_style1{
+                background-color: #cccccc;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    </head>
+    <body class="mdc-typography">
+        <header class="mdc-toolbar">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <h1 class="header__title">Objects</h1>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+                    <div class="mdc-layout-grid grid2">
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-phone">From:<div id='fromYear'></div></div>
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-4-phone">To:<div id='toYear'></div></div>
+                    </div>
+                </section>
+            </div>
+        </header>        
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div><a href='#'>Documentation...</a></div>
+            </div>
+        </div>
+
+        <div class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><h1 class="mdc-typography--title mdc-typography--adjust-margin">Object</h1></div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <pre><code>
+function Person(first, last, age, gender, interests) {
+    this.name = {
+        first,
+        last
+    };
+    this.age = age;
+    this.gender = gender;
+    this.interests = interests;
+    this.bio = function() {
+        alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+    };
+    this.greeting = function() {
+        alert('Hi! I\'m ' + this.name.first + '.');
+    };
+};
+var person1 = new Person('Fred', 'Carella', 32, 'male', ['music', 'skiing']);
+p(person1);
+                </code></pre>
+            </div>
+        </div>
+        <div id='content' class="mdc-layout-grid grid1">
+            <div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><h1 class="mdc-typography--title mdc-typography--adjust-margin">Output</h1></div>
+
+        </div>
+
+        <script>
+            function Person(first, last, age, gender, interests) {
+            this.name = {
+            first,
+                    last
+            };
+            this.age = age;
+            this.gender = gender;
+            this.interests = interests;
+            this.bio = function() {
+            alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+            };
+            this.greeting = function() {
+            alert('Hi! I\'m ' + this.name.first + '.');
+            };
+            };
+            var person1 = new Person('Fred', 'Carella', 32, 'male', ['music', 'skiing']);
+            p(person1);
+            /*p(d) - recursive function to display properties of an object*/
+            function p(d) {
+            $.each(d, function (key, value) {
+            if (typeof value === 'object') {
+            console.log(key, "{");
+            var e3 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-2-phone'>" + key + "</div>");
+            $("#content").append(e3);
+            $("#content").append(e4);
+            p(value);
+            } else {
+            console.log(key, ": ", value);
+            var e3 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mdc-layout-grid__cell--span-2-phone'>" + key + "</div>");
+            var e4 = $("<div class='mdc-layout-grid__cell mdc-layout-grid__cell--span-10 mdc-layout-grid__cell--span-2-phone'>" + value + "</div>");
+            $("#content").append(e3);
+            $("#content").append(e4);
+            }
+            });
+            };
+
+        </script>
+    </body>
+</html>
