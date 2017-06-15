@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Learn Javascript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- use templates see https://www.w3schools.com/howto/howto_html_include.asp -->
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="resources/css/myLayout.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+
+        <link rel="stylesheet" href="resources/libraries/highlight/styles/default.css">
+        <script src="resources/libraries/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            function myFunction() {
+                alert('This script was executed from the head');
+            }
+        </script>
+        <script>
+            function setLoginName(n) {
+                var el = document.querySelector("div.user-panel.main input[name=login]");
+                el.value = n;
+            }
+        </script>
+        <script src="resources/js/p2/main.js"></script>
+    </head>
+    <body>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>Wombats'</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>JS: Including Javascript</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+<div style="text-align: left">
+    <h2>Number Guessing Game</h2>
+    <p>Run <a target="_blank" href="p03/numberGuessingGame.html">numberGuessingGame.html...</a></p>
+    <div class="spacer"></div>
+    <h3>Notes</h3>
+    <ul>
+        <li>Do the MDN tutorial above in first steps.  What follows are my own notes.</li>
+    </ul>
+    <div class="spacer"></div>
+    <h3>Notes</h3>
+    <ul>
+        <li>Javascript must go in the body, not the head, otherwise it wont see the elements</li>
+        <li>Notes are in the page &lt;ctrl&gt;-u</li>
+        <li><em>Declare variables</em>.  "var" makes it local in scope</li>
+        <li style="display: block;">
+            <pre>
+<code>
+var randomNumber = Math.floor(Math.random() * 100) + 1;
+
+var guesses = document.querySelector('.guesses');
+var lastResult = document.querySelector('.lastResult');
+var lowOrHi = document.querySelector('.lowOrHi');
+
+var guessSubmit = document.querySelector('.guessSubmit');
+var guessField = document.querySelector('.guessField');
+
+var guessCount = 1;
+var resetButton;
+</code>
+            </pre>
+        </li>
+        <li><em>querySelector</em> (see <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector")>this...</a> ) and selector <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors">documentation...</a>
+            <ul>
+                <li>Returns the first Element within the document that matches the specified group of selectors</li>
+                <li>Here, return the first element whose class is "guesses"</li>
+            </ul>
+        </li>
+        <li style="display: block;">
+            <pre>
+<code>
+var guesses = document.querySelector('.guesses');
+....
+              &lt;p class="guesses"&gt;&lt;/p&gt;
+</code>
+            </pre>
+        </li>
+        <li>
+            <em>querySelector example 2</em>
+            <ul>
+                <li>
+                    Here, return the first element where an input element with the name 'login' is nested in a div that belongs to classes 'user-panel' and 'main'
+                </li>
+            </ul>
+        </li>
+        <li style='display: block'>
+            <pre>
+<code>
+....
+function setLoginName(n){
+    var el = document.querySelector("div.user-panel.main input[name=login]");
+    el.value=n;
+}
+....
+&lt;div class="user-panel main"&gt;
+    Login Name: &lt;input name="login"/&gt;
+&lt;/div&gt;
+....
+&lt;div&gt;
+        &lt;button type="button" onclick="setLoginName('fcarella')"&gt;Set Login Name to fcarella...&lt;/button&gt;
+&lt;/div&gt;
+
+</code>
+            </pre>
+        </li>
+        <li style='display: block'>
+            <ul>
+                <li style='display: block'>
+                    <div class="user-panel main" style="text-height: 2em;padding-bottom: 1em;font-size: 1.2em;background-color: #ababab">
+                        <div style="display: inline" class="user-panel main"><em>Try me...</em></div>
+                        <div style="display: inline">Login Name: </div><div style="display: inline"><input name="login"/></div>
+                        <div style="display: inline"><button type="button" onclick="setLoginName('fcarella')">Set Login Name to fcarella...</button></div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li>javascript has the <em>strict equality operator</em>.  See <a href="http://stackoverflow.com/questions/523643/difference-between-and-in-javascript">http://stackoverflow.com/questions/523643/difference-between-and-in-javascript</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+The 3 equal signs mean "equality without type coercion". Using the triple equals, the values must be equal in type as well.
+
+0 == false   // true
+0 === false  // false, because they are of a different type
+1 == "1"     // true, automatic type conversion for value only
+1 === "1"    // false, because they are of a different type
+null == undefined // true
+null === undefined // false
+'0' == false // true
+'0' === false // false
+</code>
+            </pre>
+        </li>
+        <li>use the <em>Number()</em> builtin method to check a string for number validity</li>
+        <li style="display: block;"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+var userGuess = Number(guessField.value);
+....
+Number('123')     // 123
+Number('12.3')    // 12.3
+Number('')        // 0
+Number('0x11')    // 17
+Number('0b11')    // 3
+Number('0o11')    // 9
+Number('foo')     // NaN
+Number('100a')    // NaN
+....
+var biggestNum = Number.MAX_VALUE;
+var smallestNum = Number.MIN_VALUE;
+var infiniteNum = Number.POSITIVE_INFINITY;
+var negInfiniteNum = Number.NEGATIVE_INFINITY;
+var notANum = Number.NaN;
+
+var d = new Date('December 17, 1995 03:24:00');
+console.log(Number(d));
+
+
+</code>
+            </pre>
+        </li>
+        <li>The constructs that listen out for the event happening are called <em>event listeners</em>, and the blocks of code run in response to the event firing are called <em>event handlers</em>.</li>
+        <li style="display: block;">
+            <pre>
+<code>
+guessSubmit.addEventListener('click', checkGuess);
+</code>
+            </pre>
+        </li>
+
+        <li>The <em>Node.textContent</em> property represents the text content of a node and its descendants..  See <a href="https://developer.mozilla.org/en/docs/Web/API/Node/textContent">documentation...</a></li>
+        <li style="display: block;">While textContent gets the content of all elements, including &lt;script&gt; and &lt;style&gt; elements, innerText does not.</li>
+        <li style="display: block;">
+            <pre>
+<code>
+// Given the following HTML fragment:
+//   &lt;div id="divA"&gt;This is &lt;span&gt;some&lt;/span&gt; text&lt;/div&gt;
+
+// Get the text content:
+var text = document.getElementById("divA").textContent;
+// |text| is set to "This is some text".
+
+// Set the text content:
+document.getElementById("divA").textContent = "This is some text";
+// The HTML for divA is now:
+//   &lt;div id="divA"&gt;This is some text&lt;/div&gt;
+</code>
+            </pre>
+        </li>
+        
+        <li> <em>Useful properties and methods.</em></li>
+        <li style="display: block;">
+            <pre>
+<code>
+// disable form elements
+guessField.disabled = true;
+guessSubmit.disabled = true;
+// create an element (a button here) and add it to the DOM
+resetButton = document.createElement('button');
+resetButton.textContent = 'Start new game';
+document.body.appendChild(resetButton);
+
+// remove an element
+resetButton.parentNode.removeChild(resetButton);
+
+// set a form field value
+guessField.value = '';
+
+// give the input field focus on page load
+guessField.focus();
+
+// set style
+lastResult.style.backgroundColor = 'white';
+
+guesses.style.backgroundColor = 'yellow';
+guesses.style.fontSize = '200%';
+guesses.style.padding = '10px';
+guesses.style.boxShadow = '3px 3px 6px black';
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+    </ul>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div>
+        <button type="button" onclick="myFunction()">Execute head script</button>
+    </div>
+</div>
+
+<div class="spacer"></div>
+
+<div style="text-align: left">
+    <h2>In the body</h2>
+    <pre>
+<code>
+</code>
+    </pre>
+    <div>
+        <button type="button" onclick="myFunction2()">Execute body script</button>
+    </div>
+</div>
+
+                </div>
+                <div class="row">
+                    <div class="col-6">          
+                        <div class="col-2">
+                            wombat software
+                        </div>
+                        <div class="col-2">
+                            <div style="text-align: center">
+                                Footer
+                            </div>
+                        </div> 
+                        <div class="col-2" style="text-align: right">
+                            Copyright
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function myFunction2() {
+                alert('This script was executed from the body');
+            }
+        </script>
+    </body>
+</html>

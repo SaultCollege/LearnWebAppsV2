@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+-->
+<html>
+    <head>
+        <title>App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="../resources/css/myLayout.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/app.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='../resources/js/app/app.js'></script>
+        <script src='../resources/js/app/carModal.js'></script>
+        <script src='../resources/js/app/Dialog.js'></script>
+        <script src='../resources/js/app/util.js'></script>
+        <script>
+            var cars = []; // global cars array
+            var dbName = "CarsDatabase";
+            var db;
+
+        </script>
+    </head>
+    <body>
+        <!-- https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/ -->
+        <!-- https://css-tricks.com/considerations-styling-modal/*/ -->
+
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>App</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>Used Car Lot</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <a href='page2.html'>Page 2...</a>
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+                    <div class="row">
+                        <div class="col-6">
+                            <button id='newButton' onclick="newCar()">New Car...</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-1">
+                            Make
+                        </div>
+                        <div class="col-1">
+                            Model
+                        </div>
+                        <div class="col-1">
+                            Year
+                        </div>
+                        <div class="col-1">
+                            Select
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div id='content' class='col-6'>
+                            <i></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script>
+            function newCar() {
+                var v = new Vehicle();
+                var modal = new Dialog(uuid(), newCarHandler, v);
+                modal.showModal();
+            }
+            function newCarHandler(e) {
+                var id = e.srcElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+                fields = document.getElementById(id).getElementsByTagName('input');
+                var image = fields[0].value;
+                // image uses the \ file separator and will be of the form c:\fakepath\filename.type in windows
+                // image will have / file separator if in linux
+                // so, convert all \ to /, then split along / then get last element
+                // replace all \ with /
+                var ss = image.replace(/\\/g, "/");
+                // split
+                var s = ss.split("/");
+                image = s[s.length - 1];
+                var make = fields[1].value;
+                var model = fields[2].value;
+                var year = fields[3].value;
+                //'mustang-2017.jpg'
+                //'camaro-2017.jpg'
+                var car = new Vehicle(uuid(), make, model, year, image);
+                cars.push(car);
+                cars.forEach(function (item, index, array) {
+                    console.log(item, index, item.uuid);
+                });
+                insertCar(car);
+                var removeMe = document.getElementById(id);
+                document.getElementsByTagName('body')[0].removeChild(removeMe);
+            }
+
+            function insertCar(car) {
+                /*
+                 <div id='vehicle1' class="row">
+                 <div class="col-3 image">
+                 </div>
+                 <div class="col-1" make>
+                 </div>
+                 <div class="col-1 model">
+                 </div>
+                 <div class="col-1 year">
+                 </div>
+                 </div>
+                 */
+                var container = document.getElementById('content');
+                container.appendChild(car.getView());
+                
+            }
+            function edit(id) {
+                var car2Edit = cars.find(findCarById);
+                function findCarById(car) {
+                    return car.uuid === id;
+                }
+                var modal = new Dialog(uuid(), updateCarHandler, car2Edit);
+                modal.showModal();
+
+
+
+            }
+            function updateCarHandler(e) {
+                var id = e.srcElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+                fields = document.getElementById(id).getElementsByTagName('input');
+                var fields = document.getElementById(id).getElementsByTagName('input');
+                var image = fields[0].value;
+                var make = fields[1].value;
+                var model = fields[2].value;
+                var year = fields[3].value;
+                var car2Edit = cars.find(findCarById);
+                function findCarById(car) {
+                    return car.uuid === id;
+                }
+                car2Edit.make=make;
+                car2Edit.model=model;
+                car2Edit.year=year;
+                
+                var oldNode=document.getElementById(id).parentNode.replaceChild(car2Edit.getView(), document.getElementById(id));
+            }
+        </script>
+
+    </body>
+</html>

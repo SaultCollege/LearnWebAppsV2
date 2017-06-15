@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="../resources/css/myLayout.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='../resources/js/test/Dialog.js'></script>
+        <script src='../resources/js/test/Person.js'></script>
+        <script src='../resources/js/app/util.js'></script>
+        <script>
+            var people = []; // global cars array
+            var dbName = "PersonDatabase";
+            var db;
+        </script>
+    </head>
+    <body>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>Test</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>Test Objects</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="col-1">
+                        <button onclick="newPerson()">New Person</button>
+                    </div>
+                    <div id="content" class="col-5" style="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            function newPerson() {
+                var p = new Person();
+//                var uuid=uuid();
+//                alert(uuid);
+                var d = new Dialog(uuid, newPersonHandler, p);
+                d.showModal();
+            }
+            function edit(id) {
+                var person2Edit = people.find(findPersonById);
+                function findPersonById(person) {
+                    return person.uuid === id;
+                }
+                var modal = new Dialog(uuid(), newPersonHandler, person2Edit);
+                modal.showModal();
+
+
+
+            }
+            function newPersonHandler(e) {
+                var person = e.detail;
+
+                console.log(person);
+                console.log("person.modal=" + person.modal);
+                people.push(person);
+                people.forEach(function (item, index, array) {
+                    console.log(item, index, item.uuid);
+                });
+
+                person.modal.closeModal();
+
+                console.log(person.firstname);
+                console.log(person.fullname);
+
+                var container = document.getElementById('content');
+                var view = person.getView();
+                container.appendChild(view);
+
+            }
+
+            // example of defining a getter for a property
+            var o = {a: 0};
+            Object.defineProperty(o, 'b', {get: function () {
+                    return this.a + 1;
+                }});
+            console.log(o.b); // Runs the getter, which yields a + 1 (which is 1)
+
+        </script>
+    </body>
+</html>

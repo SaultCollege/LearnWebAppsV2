@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Learn Javascript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- use templates see https://www.w3schools.com/howto/howto_html_include.asp -->
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="resources/css/myLayout.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+
+        <link rel="stylesheet" href="resources/libraries/highlight/styles/default.css">
+        <script src="resources/libraries/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>Wombats'</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>JS: Creating Objects</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+                    <div style="background-color: white;;padding:10px;z-index: 100;position: fixed;border:1px solid red;right:10px;top:10px;min-width:200px;min-height:100px">
+                        <div>
+                            <fieldset>
+                                <legend>
+                                    <h2>Input</h2>
+                                </legend>
+                                <div class="col-6 p4div">
+                                    <div>
+                                        <label for="jscode">Enter code:</label>
+                                        <input class="jscode" type="text">
+                                        <button class="button1">Submit code</button>
+                                        <h3>Result</h3>
+                                        <p class="p1">no text</p>
+                                    </div>
+                                </div>
+                                <script>
+                                    var input = document.querySelector('.jscode');
+                                    var btn = document.querySelector('.button1');
+                                    var para = document.querySelector('.p1');
+                                    btn.onclick = function () {
+                                    var code = input.value;
+                                    para.textContent = eval(code);
+                                    }
+                                </script>
+
+                            </fieldset>
+                        </div>
+                    </div>
+                    <h1>Creating Objects Part 1</h1>
+                    <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS'>MDN Documentation...</a>
+                    <h2>Creating Objects</h2>
+                    <h2>with constructor functions</h2>
+                    <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+                    <h3>Description</h3>
+                    <div style="font-style: italic">
+                        "The constructor function is JavaScript's version of a class. You'll notice that it has all the features you'd expect in a function, although it doesn't return anything or explicitly create an object — it basically just defines properties and methods. You'll see the this keyword being used here as well — it is basically saying that whenever one of these object instances is created, the object's name property will be equal to the name value passed to the constructor call, and the greeting() method will use the name value passed to the constructor call too.
+                        <br/><br/>
+                        Note that when we are calling our constructor function we are defining greeting() every time, which isn't ideal. To avoid this we can define functions on the prototype instead, which we will look at later.
+                        "
+                        <br/><br/>Access properties like this:<br/><br/>                                    
+                        <em>person3['age']<br/>
+                            person3.interests[1]<br/>
+                            person3.bio()<br/>
+                        </em>
+                    </div>
+                    <h2>Javascript</h2>
+                    <pre><code class="javascript">
+// constructor
+
+function Person(first, last, age, gender, interests) {
+  this.name = {
+    first,
+    last
+  };
+  this.age = age;
+  this.gender = gender;
+  this.interests = interests;
+  this.bio = function() {
+    alert(this.name.first + 
+          ' ' + this.name.last + 
+            ' is ' + this.age + 
+            ' years old. He likes ' + 
+            this.interests[0] + 
+            ' and ' + 
+            this.interests[1] + '.');
+  };
+  this.greeting = function() {
+    alert('Hi! I\'m ' + this.name.first + '.');
+};
+
+var person1 = new Person('Bob');
+var person2 = new Person('Sarah');
+
+var person3 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+}
+</code></pre>
+                    <h2>HTML</h2>
+                    <pre><code class="html">
+                                    <script>
+                                        function Person(first, last, age, gender, interests) {
+                                        this.name = {
+                                        first,
+                                                last
+                                        };
+                                        this.age = age;
+                                        this.gender = gender;
+                                        this.interests = interests;
+                                        this.bio = function() {
+                                        alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+                                        };
+                                        this.greeting = function() {
+                                        alert('Hi! I\'m ' + this.name.first + '.');
+                                        };
+                                        };
+                                        var person1 = new Person('Bob');
+                                        var person2 = new Person('Sarah');
+                                        var person3 = new Person('Fred', 'Carella', 32, 'male', ['music', 'skiing']);
+                                        </script>
+
+&lt;button onclick='person1.greeting()'&gt;Execute person1.greeting()&lt;/button&gt;
+&lt;button onclick='person2.greeting()'&gt;Execute person2.greeting()&lt;/button&gt;
+&lt;button onclick='person3.greeting()'&gt;Execute person3.greeting();person3.bio()&lt;/button&gt;
+
+<button onclick='person1.greeting()'>Execute person1.greeting()</button>
+<button onclick='person2.greeting()'>Execute person2.greeting()</button>
+<button onclick='person3.greeting(); person3.bio()'>Execute person3.greeting();person3.bio()</button>
+</code></pre>
+
+                    <h2>Object() constructor</h2>
+                    <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+                    <h3>Description</h3>
+                    <div>
+                        So far we've seen two different ways to create an object instance — declaring an object literal, and using a constructor function (see above).
+                        <br/>
+                        These make sense, but there are other ways — we want to make you familiar with these in case you come across them in your travels around the Web.
+                    </div>
+                    <h2>Javascript</h2>
+                    <pre><code class="javascript">
+var person1 = new Object();
+//This stores an empty object in the person1 variable. 
+//You can then add properties and methods to this object using 
+//dot or bracket notation as desired; try these examples:
+person1.name = 'Chris';
+person1['age'] = 38;
+person1.greeting = function() {
+  alert('Hi! I\'m ' + this.name + '.');
+};
+//You can also pass an object literal to the Object() constructor as a 
+//parameter, to prefill it with properties/methods. Try this:
+var person5 = new Object({
+  name: 'George',
+  age: 38,
+  greeting: function() {
+    alert('Hi! I\'m ' + this.name + '.');
+  }
+});
+</code></pre>
+                    <h2>HTML</h2>
+
+                    <pre class="html"><code>
+                                <script>
+                                    var person4 = new Object();
+                                    //This stores an empty object in the person1 variable. You can then add properties and methods to this object using dot or bracket notation as desired; try these examples:
+                                    person4.name = 'Chris';
+                                    person4['age'] = 38;
+                                    person4.greeting = function() {
+                                    alert('Hi! I\'m ' + this.name + '.');
+                                    };
+                                    //You can also pass an object literal to the Object() constructor as a parameter, to prefill it with properties/methods. Try this:
+                                    var person5 = new Object({
+                                    name: 'George',
+                                            age: 38,
+                                            greeting: function() {
+                                            alert('Hi! I\'m ' + this.name + '.');
+                                            }
+                                    });
+                                            </script>
+&lt;button onclick='person4.greeting()'&gt;Execute person4.greeting()&lt;/button&gt;
+&lt;button onclick='person5.greeting()'&gt;Execute person5.greeting()&lt;/button&gt;
+<button onclick='person4.greeting()'>Execute person4.greeting()</button>
+<button onclick='person5.greeting()'>Execute person5.greeting()</button>
+</code></pre>
+
+
+                    <h2>Using the create() method</h2>
+                    <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+                    <h3>Description</h3>
+                    <div>
+                        JavaScript has a built-in method called create(), which allows you to create a new object instance based on an existing object.
+                        <br/>
+                    </div>
+
+                    <h2>Javascript</h2>
+
+                    <pre><code class="javascript">
+var person6 = Object.create(person5);
+
+</code></pre>
+
+                    <h2>HTML</h2>
+
+                    <pre class="html"><code>
+                                <script>
+                                    var person6 = Object.create(person5);
+                                            </script>
+&lt;button onclick='person6.greeting()'&gt;Execute person6.greeting()&lt;/button&gt;
+&lt;button onclick='alert(person6.name)'&gt;Execute alert(person6.name)&lt;/button&gt;
+<button onclick='person6.greeting()'>Execute person6.greeting()</button>
+<button onclick='alert(person6.name)'>Execute alert(person6.name)</button>
+</code></pre>
+                    <h2>Title</h2>
+                    <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+                    <h3>Description</h3>
+                    <h2>HTML</h2>
+                    <h2>Result</h2>
+                    <h2>Title</h2>
+                    <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+                    <h3>Description</h3>
+                    <h2>HTML</h2>
+                    <h2>Result</h2>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

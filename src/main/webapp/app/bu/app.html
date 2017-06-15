@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!--
+-->
+<html>
+    <head>
+        <title>App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="../resources/css/myLayout.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/app.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='../resources/js/app/app.js'></script>
+        <script>
+            var cars = []; // global cars array
+        </script>
+    </head>
+    <body>
+        <!-- https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/ -->
+        <!-- https://css-tricks.com/considerations-styling-modal/*/ -->
+
+        <div id='addDialog' style='
+             display:none;border: 1px solid threedface;position: fixed;top: 20%;left: 50%;transform: translate(-50%, -50%);
+             background-color: white;min-width: 400px; min-height: 300px'>
+            <div class="row">
+                <div class="col-2">
+                    Image
+                </div>
+                <div class="col-4 image">
+                    <form>
+                        <input style='width: 100%' class='image' type="file">
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    Make
+                </div>
+                <div class="col-4">
+                    <input style='width: 100%' class='make'/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    Model
+                </div>
+                <div class="col-4">
+                    <input style='width: 100%' class='model'/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    Year
+                </div>
+                <div class="col-4">
+                    <input style='width: 100%' class='year'/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div style='text-align: right'>
+                        <button id='addSubmitButton' onclick="add()" value="Add">Submit</button>
+                        <button id='cancelAddButton' onclick="closeAdd()" value="Add">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>App</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>Used Car Lot</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <a href='page2.html'>Page 2...</a>
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+                    <div class="row">
+                        <div class="col-6">
+                            <button id='addButton' onclick="document.getElementById('addDialog').style.display = 'block'" value="Add">Add</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-1">
+                            Make
+                        </div>
+                        <div class="col-1">
+                            Model
+                        </div>
+                        <div class="col-1">
+                            Year
+                        </div>
+                        <div class="col-1">
+                            Select
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div id='content' class='col-6'>
+                            <i></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script>
+            function add() {
+                /*
+                 var car = new Vehicle('Ford', 'Mustang', 2017, 'mustang-2017.jpg');
+                 var v = document.getElementById('vehicle' + 1);
+                 var fields = v.getElementsByTagName('div')
+                 //                var image=fields[0].innerHTML=car.image;
+                 var make = fields[1].innerHTML = car.make;
+                 var model = fields[2].innerHTML = car.model;
+                 var year = fields[3].innerHTML = car.year;
+                 var img = document.createElement('IMG');
+                 img.src = '../resources/images/app/' + car.image;
+                 img.width = 300;
+                 fields[0].appendChild(img);
+                 console.log(img);
+                 */
+                //                document.body.appendChild(img);
+                //alert(car);
+
+                var vv = document.getElementById('addDialog');
+                var fields = vv.getElementsByTagName('input')
+                var image = fields[0].value;
+                // image use the \ file separator and will be of the form c:\fakepath\filename.type in windows
+                // image will have / file separator if in linux
+                // so, convert all \ to /, then split along / then get last element
+
+                // replace all \ with /
+                var ss = image.replace(/\\/g, "/");
+                // split
+                var s = ss.split("/");
+                console.log('s[s.length-1]=' + s[s.length - 1]);
+                image = s[s.length - 1];
+                var make = fields[1].value;
+                var model = fields[2].value;
+                var year = fields[3].value;
+                //'mustang-2017.jpg'
+                //'camaro-2017.jpg'
+                var car = new Vehicle(uuid(), make, model, year, image);
+                /*
+                 var img = document.createElement('IMG');
+                 img.src = '../resources/images/app/' + car.image;
+                 img.width = 300;
+                 var v = document.getElementById('vehicle' + 1);
+                 var fields = v.getElementsByTagName('div')
+                 //                var image=fields[0].innerHTML=car.image;
+                 var make = fields[1].innerHTML = car.make;
+                 var model = fields[2].innerHTML = car.model;
+                 var year = fields[3].innerHTML = car.year;
+                 var img = document.createElement('IMG');
+                 img.src = '../resources/images/app/' + car.image;
+                 img.width = 300;
+                 fields[0].appendChild(img);
+                 console.log('image='+image);
+                 console.log('img='+img);
+                 */
+                cars.push(car);
+                cars.forEach(function (item, index, array) {
+                    console.log(item, index, item.uuid);
+                });
+                document.getElementById('addDialog').style.display = 'none'
+                insertCar(car);
+                var d = carDialog();
+                var body = document.getElementsByTagName("body")[0];
+                body.appendChild(d);
+            }
+            function closeAdd() {
+                document.getElementById('addDialog').style.display = 'none'
+            }
+            function refresh() {
+
+
+            }
+            function insertCar(car) {
+                /*
+                 <div id='vehicle1' class="row">
+                 <div class="col-3 image">
+                 </div>
+                 <div class="col-1" make>
+                 </div>
+                 <div class="col-1 model">
+                 </div>
+                 <div class="col-1 year">
+                 </div>
+                 </div>
+                 */
+                var container = document.getElementById('content');
+                var divRow = document.createElement('DIV');
+                var divImage = document.createElement('DIV');
+                var divMake = document.createElement('DIV');
+                var divModel = document.createElement('DIV');
+                var divYear = document.createElement('DIV');
+                var divSelect = document.createElement('DIV');
+                divRow.setAttribute('id', car.uuid);
+                divRow.setAttribute('class', "row");
+                divImage.setAttribute('class', "col-2 image");
+                divMake.setAttribute('class', "col-1 make");
+                divModel.setAttribute('class', "col-1 model");
+                divYear.setAttribute('class', "col-1 year");
+                divSelect.setAttribute('class', "col-1 checkbox");
+                divMake.innerHTML = car.make; //"make";
+                divModel.innerHTML = car.model; //"model";
+                divYear.innerHTML = car.year; //"year";
+                var img = document.createElement('IMG');
+                img.src = '../resources/images/app/' + car.image;
+                img.width = 300;
+                divImage.appendChild(img);
+                divRow.appendChild(divImage);
+                divRow.appendChild(divMake);
+                divRow.appendChild(divModel);
+                divRow.appendChild(divYear);
+                var checkbox = document.createElement('INPUT');
+                checkbox.setAttribute('type', 'checkbox');
+                // https://www.w3schools.com/icons/google_icons_editor.asp
+                //<i class="material-icons" style="font-size:36px">mode_edit</i>
+                var editIcon = document.createElement('I');
+                editIcon.setAttribute('class', 'material-icons');
+                editIcon.setAttribute('onClick', 'alert("Hello")');
+                editIcon.innerHTML = 'mode_edit';
+                divSelect.appendChild(checkbox);
+                divSelect.appendChild(editIcon);
+                divRow.appendChild(divSelect);
+                container.appendChild(divRow);
+            }
+
+            function uuid() {
+                //http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.
+                        replace(/[xy]/g, function (c) {
+                            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                            return v.toString(16);
+                        });
+            }
+            function removeIdFromBody(id){
+                var body = document.getElementsByTagName("body")[0];
+                var el=document.getElementById(id);
+                body.removeChild(el);
+            }
+            function carDialog() {
+                var dialogDiv = document.createElement('DIV');
+                var id=uuid();
+                dialogDiv.setAttribute('id', id);
+                dialogDiv.style.position = 'fixed';
+                dialogDiv.style.top = '20%';
+                dialogDiv.style.left = '50%';
+                dialogDiv.style.transform = 'translate(-50%, -50%)';
+                dialogDiv.style.backgroundColor = 'grey';
+                dialogDiv.style.minWidth = '400px';
+                dialogDiv.style.minHeight = '300px';
+                var button = document.createElement('BUTTON');
+                button.setAttribute('onClick', 'removeIdFromBody(\''+id+'\')');
+                button.textContent = 'deleteme';
+                dialogDiv.appendChild(button);
+                return dialogDiv;
+                /*
+                 <div id='addDialog' style='
+                 display:none;border: 1px solid threedface;position: fixed;top: 20%;left: 50%;transform: translate(-50%, -50%);
+                 background-color: white;min-width: 400px; min-height: 300px'>
+                 <div class="row">
+                 <div class="col-2">
+                 Image
+                 </div>
+                 <div class="col-4 image">
+                 <form>
+                 <input style='width: 100%' class='image' type="file">
+                 </form>
+                 </div>
+                 </div>
+                 <div class="row">
+                 <div class="col-2">
+                 Make
+                 </div>
+                 <div class="col-4">
+                 <input style='width: 100%' class='make'/>
+                 </div>
+                 </div>
+                 <div class="row">
+                 <div class="col-2">
+                 Model
+                 </div>
+                 <div class="col-4">
+                 <input style='width: 100%' class='model'/>
+                 </div>
+                 </div>
+                 <div class="row">
+                 <div class="col-2">
+                 Year
+                 </div>
+                 <div class="col-4">
+                 <input style='width: 100%' class='year'/>
+                 </div>
+                 </div>
+                 <div class="row">
+                 <div class="col-6">
+                 <div style='text-align: right'>
+                 <button id='addSubmitButton' onclick="add()" value="Add">Submit</button>
+                 <button id='cancelAddButton' onclick="closeAdd()" value="Add">Cancel</button>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 
+                 */
+            }
+
+            console.log(uuid());
+
+        </script>
+
+    </body>
+</html>

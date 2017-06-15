@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+-->
+<html>
+    <head>
+        <title>App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="../resources/css/myLayout.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/app.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='../resources/js/app/app.js'></script>
+    </head>
+    <body>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>App</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>Modal Example</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <a href='page2.html'>Page 2...</a>
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-5">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <!-- Trigger/Open The Modal -->
+                                        <button id="myBtn">Open Modal</button>
+
+                                        <!-- The Modal -->
+                                        <div id="myModal" class="modal">
+
+                                            <!-- Modal content -->
+                                            <div class="modal-content">
+                                                    <span class="close">&times;</span>
+                                                <p>Some text in the Modal..</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal 
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+//                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Learn Javascript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- use templates see https://www.w3schools.com/howto/howto_html_include.asp -->
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="resources/css/myLayout.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+
+        <link rel="stylesheet" href="resources/libraries/highlight/styles/default.css">
+        <script src="resources/libraries/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>Wombats'</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>JS: Object Prototypes</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+                    <div class="row">
+                        <div style="background-color: white;;padding:10px;z-index: 100;position: fixed;border:1px solid red;right:10px;top:10px;min-width:200px;min-height:100px">
+                            <div>
+                                <fieldset>
+                                    <legend>
+                                        <h2>Input</h2>
+                                    </legend>
+                                    <div class="col-6 p4div">
+                                        <div>
+                                            <label for="jscode">Enter code:</label>
+                                            <input class="jscode" type="text">
+                                            <button class="button1">Submit code</button>
+                                            <h3>Result</h3>
+                                            <p class="p1">no text</p>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        var input = document.querySelector('.jscode');
+                                        var btn = document.querySelector('.button1');
+                                        var para = document.querySelector('.p1');
+                                        btn.onclick = function () {
+                                        var code = input.value;
+                                        para.textContent = eval(code);
+                                        }
+                                    </script>
+
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes'>MDN Documentation...</a>
+                        </div>
+                    </div>
+                    <h2>Description</h2>
+                    <div style="font-style: italic">
+                        "<em>Prototypes are the mechanism by which JavaScript objects inherit features from one another</em>, and they work differently than inheritance mechanisms in classical object-oriented programming languages. In this article we explore that difference, explain how prototype chains work, and look at how the prototype property can be used to add methods to existing constructors."
+                        <ul>
+                            <li>
+                                Javascript is a prototype based language.
+                            </li>
+                            <li>
+                                each object has a prototype object which acts a template for the object
+                            </li>
+                            <li>
+                                objects inherit methods and properties from the prototype
+                            </li>
+                            <li>
+                                prototypes may themselves be based on other prototypes.  This called a prototype chain
+                            </li>
+                            <li>
+                                properties and methods are defined in the Objects' constructor functions, not the object instances themselves.
+                            </li>
+                            <li>
+                                In classic OOP, classes are defined, then when object instances are created all the properties and methods defined on the class are copied over to the instance. In JavaScript, they are not copied over — instead, a link is made between the object instance and its constructor (a link in the prototype chain), and the properties and methods are found in the constructor by walking up the chain.
+                            </li>
+                            <li>
+
+                            </li>
+                            <li>
+
+                            </li>
+                            <li>
+
+                            </li>
+                            <li>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <pre><code class="javascript">
+// constructor
+
+function Person(first, last, age, gender, interests) {
+  this.name = {
+    first,
+    last
+  };
+  this.age = age;
+  this.gender = gender;
+  this.interests = interests;
+  this.bio = function() {
+    alert(this.name.first + 
+          ' ' + this.name.last + 
+            ' is ' + this.age + 
+            ' years old. He likes ' + 
+            this.interests[0] + 
+            ' and ' + 
+            this.interests[1] + '.');
+  };
+  this.greeting = function() {
+    alert('Hi! I\'m ' + this.name.first + '.');
+};
+
+var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+}
+
+</code></pre>
+                    Enter into input box above:
+                    <br/>
+                    <em>person1.name.first;</em><br/>
+                    <em>person1.name.last;</em><br/>
+                    <em>person1.age;</em><br/>
+                    <em>person1.gender;</em><br/>
+                    <em>person1.interests;</em><br/>
+
+                    <script>
+                        function Person(first, last, age, gender, interests) {
+                        this.name = {
+                        first,
+                                last
+                        };
+                        this.age = age;
+                        this.gender = gender;
+                        this.interests = interests;
+                        this.bio = function() {
+                        alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+                        };
+                        this.greeting = function() {
+                        alert('Hi! I\'m ' + this.name.first + '.');
+                        };
+                        };
+                        var person1 = new Person('Fred', 'Carella', 32, 'male', ['music', 'skiing']);
+                    </script>
+                    <ul>
+                        <li>
+                            From the javascript console, you can see all of person1's properties and methods.
+                            <ul>
+                                <li style='list-style-type: none'>
+                                    <img src="resources/images/person_object.png"/>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Note, we see all the ones we defined:
+                            <ul>
+                                <li>
+                                    name
+                                </li>
+                                <li>
+                                    age
+                                </li>
+                                <li>
+                                    gender
+                                </li>
+                                <li>interests
+                                </li>
+                                <li>bio and
+                                </li>
+                                <li>greeting
+                                </li>
+                            </ul>
+                        <li>
+                            and ones we didn't
+                            <ul>
+                                <li>
+                                    hasOwnProperty
+                                </li>
+                                <li>
+                                    isPrototypeOf
+                                </li>
+                                <li>
+                                    propertyIsEnumerable
+                                </li>
+                                <li>
+                                    toString
+                                </li>
+                                <li>
+                                    valueOf
+                                </li>
+                                <li>
+                                    etc...
+                                </li>
+                            </ul>
+                        <li>
+                            The ones we didn't are defined in the person1 prototype which is Object
+                        </li>
+                        <li>
+                            The prototype chain (its class hierarchy?) is
+                            <ul>
+                                <li style='list-style-type: none;'>
+                                    person1 --&gt; Inherits from prototype --&gt; Person --&gt; Inherits from prototype&gt; Object
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            valueOf, toString, etc... are inherited from Object
+                        </li>
+                        <li>Not all properties are inherited</li>
+                        <li>Only properties that are defined in the <em>Object.prototype</em> property get inherited.</li>
+                        <li>
+                            <em>Object.prototype</em> is like a sub name space.  Inherited properties are properties that are are prefixed by <em>Object.prototype.</em>
+                        </li>
+                        <li>
+                            The prototype property is a property containing an object on which you define members that you want to be inherited.
+                        </li>
+                        <li>
+                            The prototype property is NOT a property that points to an objects prototype.
+                            <ul>
+                                <li>
+                                    __proto__ is the property that points to an objects prototype (it's superclass?)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Person.prototype is empty, ie; does not have inheritable properties
+                            <ul>
+                                <li style='list-style-type: none'>
+                                    <img src='resources/images/p1.png'/>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Object.prototype does have inheritable properties
+                            <ul>
+                                <li style='list-style-type: none'>
+                                    <img src='resources/images/p2.png'/>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            More on <em>Object.create()</em> method
+                            <ul>
+                                <li> Object.create() method can be used to create a new object instance.
+                                    <ul>
+                                        <li style='list-style-type: none'>
+                                            <pre><code class='javascript'>
+var person2 = Object.create(person1);
+</code></pre>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    create() creates a new object from a specified prototype object. Here, person2 is being created using person1 as a prototype object. You can check this by entering the following in the console:
+                                    person2.__proto__
+                                    <ul>
+                                        <li style='list-style-type: none'>
+                                            <img src='resources/images/p3.png'/>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Every function has a prototype property whose value is an object which has a constructor property.  
+                                    The constructor property points to the original constructor function.
+                                    <ul>
+                                        <li style='list-style-type: none'>
+                                            <img src='resources/images/p4.png'/>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            /*
+             * Object literal
+            */
+           var A={
+                pA1: 'pA1',
+                fA1(){ console.log('I\'m in function fA1()');}
+            }
+            A.fA1();
+
+            
+            function B(arg1){
+                this.pB1=arg1,
+                this.fB1=function(){ console.log('I\'m in function fB1()');}
+            };
+            var B=new B('pB1');
+            B.fB1();
+            
+            
+        </script>
+
+    </body>
+</html>

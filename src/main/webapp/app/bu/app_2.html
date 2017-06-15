@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--
+-->
+<html>
+    <head>
+        <title>App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="../resources/css/myLayout.css">
+        <link rel="stylesheet" type="text/css" href="../resources/css/app.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='../resources/js/app/app.js'></script>
+        <script src='../resources/js/app/carModal.js'></script>
+        <script src='../resources/js/app/Dialog.js'></script>
+        <script src='../resources/js/app/util.js'></script>
+        <script>
+            var cars = []; // global cars array
+            var dbName = "CarsDatabase";
+            var db;
+
+        </script>
+    </head>
+    <body>
+        <!-- https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/ -->
+        <!-- https://css-tricks.com/considerations-styling-modal/*/ -->
+
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>App</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>Used Car Lot</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <a href='page2.html'>Page 2...</a>
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+                    <div class="row">
+                        <div class="col-6">
+                            <button id='addButton' onclick="showDialog2()">Add Car...</button>
+                            <button id='addButton2' onclick="showDialog()">Add Car Dialog...</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-1">
+                            Make
+                        </div>
+                        <div class="col-1">
+                            Model
+                        </div>
+                        <div class="col-1">
+                            Year
+                        </div>
+                        <div class="col-1">
+                            Select
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div id='content' class='col-6'>
+                            <i></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script>
+            //https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
+            if (!window.indexedDB) {
+                window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+            }
+
+
+
+            var request = window.indexedDB.open(dbName, 2);
+
+            request.onerror = function (event) {
+                // Do something with request.errorCode!
+                alert("Database error: " + event.target.errorCode);
+            };
+            request.onupgradeneeded = function (event) {
+                var db = event.target.result;
+                // Do something with request.result!
+                alert('db' + db + ' open succeeded');
+
+                // Create an objectStore to hold information about our customers. We're
+                // going to use "ssn" as our key path because it's guaranteed to be
+                // unique - or at least that's what I was told during the kickoff meeting.
+                var objectStore = db.createObjectStore("cars", {keyPath: "uuid"});
+
+                // Create an index to search customers by name. We may have duplicates
+                // so we can't use a unique index.
+                objectStore.createIndex("make", "make", {unique: false});
+
+                // Create an index to search customers by email. We want to ensure that
+                // no two customers have the same email, so use a unique index.
+                objectStore.createIndex("model", "model", {unique: true});
+
+                // Use transaction oncomplete to make sure the objectStore creation is 
+                // finished before adding data into it.
+                objectStore.transaction.oncomplete = function (event) {
+                    // Store values in the newly created objectStore.
+                    var carObjectStore = db.transaction("cars", "readwrite").objectStore("cars");
+                    for (var i in cars) {
+                        carObjectStore.add(cars[i]);
+                    }
+                };
+            };
+
+
+            /*
+             var testDiv = new testDiv(uuid(),'Test Div');
+             var body = document.getElementsByTagName("body")[0];
+             console.log(testDiv.getId());
+             testDiv.onClick(fn);
+             body.appendChild(testDiv.getDiv());
+             function fn(){
+             alert('u clicked me 2');
+             }
+             */
+            function showDialog3() {
+                var body = document.getElementsByTagName("body")[0];
+                var modal = new Dialog(uuid(), clickSubmit);
+                var v=new Vehicle();
+                inputs=v.getDialogInputs();
+                modal.setInputs(inputs);
+                
+                body.appendChild(modal.getModal());
+                var el = document.getElementById(modal.getId());
+                el.style.display = 'block';
+                console.log('inputs==' + inputs);
+                console.log('el==' + modal);
+            }
+            function showDialog2() {
+                var body = document.getElementsByTagName("body")[0];
+                var modal = new Dialog(uuid(), clickSubmit);
+                var v=new Vehicle();
+                inputs=v.getDialogInputs();
+                modal.setInputs(inputs);
+                
+                body.appendChild(modal.getModal());
+                var el = document.getElementById(modal.getId());
+                el.style.display = 'block';
+                console.log('inputs==' + inputs);
+                console.log('el==' + modal);
+            }
+            function showDialog() {
+                var body = document.getElementsByTagName("body")[0];
+                var modal = new carModal(uuid(), clickSubmit);
+//                console.log('modal==' + modal);//.alert();
+//                console.log('modal.getModal==' + modal.getModal());//.alert();
+//                console.log('modal.id==' + modal.getId());
+
+
+                body.appendChild(modal.getModal());
+                var el = document.getElementById(modal.getId());
+                console.log('el==' + modal);
+                el.style.display = 'block';
+
+            }
+            function clickSubmit(e) {
+                var id = e.srcElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+                fields = document.getElementById(id).getElementsByTagName('input');
+//                console.log(fields);
+                var image = fields[0].value;
+//                console.log('e.srcElement' + e.srcElement);
+//                console.log('id='+id);
+                // image uses the \ file separator and will be of the form c:\fakepath\filename.type in windows
+                // image will have / file separator if in linux
+                // so, convert all \ to /, then split along / then get last element
+
+                // replace all \ with /
+                var ss = image.replace(/\\/g, "/");
+                // split
+                var s = ss.split("/");
+                console.log('s[s.length-1]=' + s[s.length - 1]);
+                image = s[s.length - 1];
+                var make = fields[1].value;
+                var model = fields[2].value;
+                var year = fields[3].value;
+                //'mustang-2017.jpg'
+                //'camaro-2017.jpg'
+                var car = new Vehicle(uuid(), make, model, year, image);
+                console.log(car);
+                cars.push(car);
+                cars.forEach(function (item, index, array) {
+                    console.log(item, index, item.uuid);
+                });
+                //document.getElementById(id).style.display = 'none';                
+                insertCar(car);
+                var removeMe=document.getElementById(id);document.getElementsByTagName('body')[0].removeChild(removeMe);
+            }
+
+            function insertCar(car) {
+                /*
+                 <div id='vehicle1' class="row">
+                 <div class="col-3 image">
+                 </div>
+                 <div class="col-1" make>
+                 </div>
+                 <div class="col-1 model">
+                 </div>
+                 <div class="col-1 year">
+                 </div>
+                 </div>
+                 */
+                var container = document.getElementById('content');
+                var divRow = document.createElement('DIV');
+                var divImage = document.createElement('DIV');
+                var divMake = document.createElement('DIV');
+                var divModel = document.createElement('DIV');
+                var divYear = document.createElement('DIV');
+                var divSelect = document.createElement('DIV');
+                divRow.setAttribute('id', car.uuid);
+                divRow.setAttribute('class', "row");
+                divImage.setAttribute('class', "col-2 image");
+                divMake.setAttribute('class', "col-1 make");
+                divModel.setAttribute('class', "col-1 model");
+                divYear.setAttribute('class', "col-1 year");
+                divSelect.setAttribute('class', "col-1 checkbox");
+                divMake.innerHTML = car.make; //"make";
+                divModel.innerHTML = car.model; //"model";
+                divYear.innerHTML = car.year; //"year";
+                var img = document.createElement('IMG');
+                img.src = '../resources/images/app/' + car.image;
+                img.width = 300;
+                divImage.appendChild(img);
+                divRow.appendChild(divImage);
+                divRow.appendChild(divMake);
+                divRow.appendChild(divModel);
+                divRow.appendChild(divYear);
+                var checkbox = document.createElement('INPUT');
+                checkbox.setAttribute('type', 'checkbox');
+                // https://www.w3schools.com/icons/google_icons_editor.asp
+                //<i class="material-icons" style="font-size:36px">mode_edit</i>
+                var editIcon = document.createElement('I');
+                editIcon.setAttribute('class', 'material-icons');
+                editIcon.setAttribute('onClick', 'edit(\'' + car.uuid + '\' )');
+                editIcon.innerHTML = 'mode_edit';
+                divSelect.appendChild(checkbox);
+                divSelect.appendChild(editIcon);
+                divRow.appendChild(divSelect);
+                container.appendChild(divRow);
+
+
+                var request = window.indexedDB.open(dbName, 2);
+                request.onerror = function (event) {
+                    alert("Why didn't you allow my web app to use IndexedDB?!");
+                };
+                request.onsuccess = function (event) {
+                    db = event.target.result;
+                    var transaction = db.transaction(["cars"], "readwrite");
+                    // Do something when all the data is added to the database.
+                    transaction.oncomplete = function (event) {
+                        alert("All done!");
+                    };
+
+                    transaction.onerror = function (event) {
+                        // Don't forget to handle errors!
+                    };
+
+                    var objectStore = transaction.objectStore("cars");
+                    for (var i in cars) {
+                        var request = objectStore.add(cars[i]);
+                        request.onsuccess = function (event) {
+                            // event.target.result == customerData[i].ssn;
+                            alert('onSuccess add car');
+                        };
+                        alert('onSuccess 2');
+
+                    }
+                    ;
+                    var objectStore = db.transaction("cars").objectStore("cars");
+
+                    objectStore.openCursor().onsuccess = function (event) {
+                        var cursor = event.target.result;
+                        if (cursor) {
+                            console.log('cursor.key-->' + cursor.key);
+                            cursor.continue();
+                        } else {
+                            alert("No more entries!");
+                        }
+                    };
+                };
+            }
+            function edit(id) {
+                var body = document.getElementsByTagName("body")[0];
+                var modal = new carModal(uuid(), clickSubmit);
+//                var modal = new Dialog(uuid(), clickSubmit2);
+                var el=cars.find(findCarById);
+                function findCarById(car){
+                    return car.uuid===id;
+                }
+                alert('found->'+el);
+                var modal = new Dialog(uuid(), clickSubmit);
+                var inputs=el.getDialogInputs();
+                modal.setInputs(inputs);
+                body.appendChild(modal.getModal());
+                var el2 = document.getElementById(modal.getId());
+                el2.style.display = 'block';
+            }
+        </script>
+
+    </body>
+</html>

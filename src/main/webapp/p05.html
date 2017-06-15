@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Learn Javascript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- use templates see https://www.w3schools.com/howto/howto_html_include.asp -->
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="resources/css/myLayout.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+
+        <link rel="stylesheet" href="resources/libraries/highlight/styles/default.css">
+        <script src="resources/libraries/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>Wombats'</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>JS: Introduction to Javascript Objects</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+            <div class="row">
+                            <div style="background-color: white;;padding:10px;z-index: 100;position: fixed;border:1px solid red;right:10px;top:10px;min-width:200px;min-height:100px">
+                <div>
+                    <fieldset>
+                        <legend>
+                            <h2>Input</h2>
+                        </legend>
+                        <div class="col-6 p4div">
+                            <div>
+                                <label for="jscode">Enter code:</label>
+                                <input class="jscode" type="text">
+                                <button class="button1">Submit code</button>
+                                <h3>Result</h3>
+                                <p class="p1">no text</p>
+                            </div>
+                        </div>
+                        <script>
+                            var input = document.querySelector('.jscode');
+                            var btn = document.querySelector('.button1');
+                            var para = document.querySelector('.p1');
+                            btn.onclick = function () {
+                                var code = input.value;
+                                para.textContent = eval(code);
+                            }
+                        </script>
+
+                    </fieldset>
+                </div>
+            </div>
+            <h1>Objects</h1>
+            <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects'>MDN Documentation...</a>
+
+            <h2>Introduction to Objects - Starter Code</h2>
+            <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+            <div class="tab1">
+                <h3>Description</h3>
+                <div class="tab1">
+                    Starter code:  An input element, a button and some javascript.  Implements the input box above.
+                </div>
+            </div>
+
+            <div class="tab1">
+                <h2>HTML</h2>
+                <div class="tab1">
+                    <pre><code class="html" style='background-color: threedhighlight'>
+&lt;div&gt;
+  &lt;label for="jscode"&gt;Enter code:&lt;/label&gt;
+  &lt;input class="jscode" type="text"&gt;
+  &lt;button class="button1"&gt;Submit code&lt;/button&gt;
+  &lt;p class="p1"&gt;no text&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var input = document.querySelector('.jscode');
+    var btn = document.querySelector('.button1');
+    var para = document.querySelector('.p1');
+    btn.onclick = function () {
+        var code = input.value;
+        para.textContent = eval(code);
+    }
+&lt;/script&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <h2>Add a variable</h2>
+            <div class="tab1"><h3>Description</h3>
+                <div class="tab1">
+                    <div>Create an empty object assign it to a variable.  Then enter variable name into the text input.
+                        Enter <em>"person"</em> into the Code Input above
+                    </div>
+                </div>
+            </div>
+            <div class="tab1">
+                <h2>HTML</h2>
+                <div class="tab1">
+                    <pre><code class="html" style='background-color: threedhighlight'>
+&lt;script&gt;
+    // define an empty object
+    var person = {};
+&lt;/script&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <h2>Add properties to an object</h2>
+            <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+            <div class="tab1">
+                <h3>Description</h3>
+                <div class="tab1">
+                    <div>
+                        Add properties:<br/>
+                        an integer (age)<br/>
+                        an string (gender)<br/>
+                        an array (name, interests)<br/>
+                        2 functions (bio, greeting)<br/>
+                        <br/>
+                        <div style="font-style: italic;width:80%">
+                            "The value of an object member can be pretty much anything — in our person object we've got a string, a number, two arrays, and two functions. The first four items are data items, and are referred to as the object's properties. The last two items are functions that allow the object to do something with that data, and are referred to as the object's methods.
+
+                            An object like this is referred to as an object literal — we've literally written out the object contents as we've come to create it. This is in contrast to objects instantiated from classes, which we'll look at later on.
+
+                            It is very common to create an object using an object literal when you want to transfer a series of structured, related data items in some manner, for example sending a request to the server to be put into a database. Sending a single object is much more efficient than sending several items individually, and it is easier to work with than an array, when you want to identify individual items by name."
+                        </div>
+                        <br/>
+                        Enter the following into the input above<br/>
+                        <em>
+                            person.age<br/>
+                            person.gender<br/>
+                            person.name[0]<br/>
+                            person.interests[1]<br/>
+                            person.bio()<br/>
+                            person.greeting()<br/>
+                        </em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab1">
+                <h2>HTML</h2>
+                <div class="tab1">
+                    <pre><code class="javascript" style='background-color: threedhighlight'>
+var person = {
+  name: ['Bob', 'Smith'],
+  age: 32,
+  gender: 'male',
+  interests: ['music', 'skiing'],
+  bio: function() {
+    alert(
+this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + 
+this.interests[0] + ' and ' + this.interests[1] + '.');
+  },
+  greeting: function() {
+    alert('Hi! I\'m ' + this.name[0] + '.');
+  }
+};
+</code></pre>
+                </div>
+            </div>
+            <script>
+                var person = {
+                    name: ['Bob', 'Smith'],
+                    age: 32,
+                    gender: 'male',
+                    interests: ['music', 'skiing'],
+                    bio: function () {
+                        alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+                    },
+                    greeting: function () {
+                        alert('Hi! I\'m ' + this.name[0] + '.');
+                    }
+                };
+            </script>
+
+            <h2>Accessing Properties with Sub-Namespaces</h2>
+
+            <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+            <div class="tab1">
+                <h3>Description</h3>
+                <div class="tab1">
+                    <div>
+                        Previously we accessed properties using DOT notation.<br/>
+                        For example, we access the name (which is defined as an array of 2 strings) like this:<br/><br/>
+                        <pre><code class="javascript" style='background-color: threedhighlight'>
+person.name
+// Returns
+Bob, Smith
+
+// OR
+
+person.name[0]
+// returns Bob
+
+person.name[1]
+// returns Smith
+
+</code></pre>
+
+                        Instead of defining name as an array we could define it as an object.<br/>
+                        Add an object property called fullname.<br/>
+                        <pre><code class="javascript" style='background-color: threedhighlight'>
+// instead of this (an array)
+
+fullname: ['Bob', 'Smith'],
+
+
+// do this (as an Object)
+
+fullname : {
+  first: 'Bob',
+  last: 'Smith'
+},
+
+</code></pre>
+                        Now try this in the input box above:<br/>
+                        <em>person.fullname.first</em>
+                    </div>
+                </div>
+            </div>
+            <div class="tab1">
+                <h2>HTML</h2>
+                <div class="tab1">
+                    <pre><code class="javascript" style='background-color: threedhighlight'>
+var person = {
+    name: ['Bob', 'Smith'],
+    fullname : {
+        first: 'Bob',
+        last: 'Smith'
+    },
+    age: 32,
+    gender: 'male',
+    interests: ['music', 'skiing'],
+    bio: function() {
+      alert(
+        this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + 
+        this.interests[0] + ' and ' + this.interests[1] + '.'
+      );
+    },
+    greeting: function() {
+      alert('Hi! I\'m ' + this.name[0] + '.');
+  }
+};
+</code></pre>
+                </div>
+            </div>
+            <script>
+                var person = {
+                    name: ['Bob', 'Smith'],
+                    fullname: {
+                        first: 'Bob',
+                        last: 'Smith'
+                    },
+                    age: 32,
+                    gender: 'male',
+                    interests: ['music', 'skiing'],
+                    bio: function () {
+                        alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+                    },
+                    greeting: function () {
+                        alert('Hi! I\'m ' + this.name[0] + '.');
+                    }
+                };
+            </script>
+            <h2>Accessing properties - Bracket notation</h2>
+            <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics'>MDN...</a>
+            <div class="tab1">
+                <h3>Description</h3>
+                <div class="tab1">
+                    <div>
+                        Instead of using this:<br/><br/>
+                        <em>
+                            person.age<br/>
+                            person.name.first<br/><br/>
+                        </em>
+                        You can use<br/><br/>
+
+                        <em>person['age']<br/>
+                            person['fullname']['first']<br/>
+                        </em>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </body>
+</html>
