@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/bourbon-neat-bitters.css">
+        <link rel="stylesheet" type="text/css" href="css/my.css">
+        <link rel="stylesheet" type="text/css" href="css/modal.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='js/Dialog.js'></script>
+        <script src='js/Person.js'></script>
+        <script src='js/util.js'></script>
+        <script>
+            var people = []; // global cars array
+            var dbName = "PersonDatabase";
+            var db;
+        </script>
+    </head>
+    <body>
+        <div style="background-color: #00d4ff" class="outer-grid">
+            <div style="background-color: #CCDDFF" class="outer-grid-item">
+                Header
+            </div>
+            <div style='background-color: skyblue' class="outer-grid-item">
+                <div class="grid">
+                    <div style='background-color: threedface' class="col-2">
+                        <div><a href='index.html'>index</a></div>
+                        <div><a href='genjs.html'>genjs</a></div>
+                        <div><a href='firebase.html'>firebase</a></div>
+                        <div>Material</div>
+                        <div><a href='material.html'>material</a></div>
+                        <div><a href='demo/layout-grid.html'>layout-grid</a></div>
+                    </div>
+                    <div style='background-color: skyblue' class="col-10">
+                        <div style='background-color: threedface' class="col-2">
+                            <button onclick="newPerson()">New Person</button>
+                        </div>
+                        <div style='background-color: threedface' class="col-1">
+                        </div>
+                        <div style='background-color: threedface' class="col-2">
+                            <button onclick="deleteSelected()">Delete Selected</button>
+                        </div>
+                        <div id='content' style='background-color: threedface' class="col-12">
+                            <div id="some-id" class="grid">
+                                <div class="col-4 image">
+                                    <img src="images/app/undefined" width="300">
+                                </div>
+                                <div class="col-3 firstname">example</div>
+                                <div class="col-3 lastname">example</div>
+                                <div class="col-2 checkbox">
+                                    <input class="selected" id="some-id2" type="checkbox">
+                                    <i class="material-icons" onclick="edit('some-id')">mode_edit</i>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <script>
+            function deleteSelected() {
+                var selected = document.getElementsByClassName('selected');
+//                console.log(selected);
+                var toDelete = [];
+                for (var i = 0, len = selected.length; i < len; i++) {
+                    if (selected[i].checked) {
+                        console.log('delete ' + selected[i].getAttribute('id'));
+                        var id = selected[i].getAttribute('id');
+                        id = id.substring(2, id.length);
+//                        alert(id);
+                        var el = document.getElementById(id);
+                        toDelete.push(el);
+                    }
+                }
+                for (var i = 0, len = toDelete.length; i < len; i++) {
+                    var parent = toDelete[i].parentNode;
+                    parent.removeChild(toDelete[i]);
+                }
+
+            }
+            function newPerson() {
+                var d = new Dialog(uuid(), newPersonHandler, new Person(uuid()));
+                d.showModal();
+            }
+            function newPersonHandler(e) {
+                var person = e.detail;
+
+                //                console.log(person);
+                people.push(person);
+                people.forEach(function (item, index, array) {
+                    console.log(item, index, item.uuid);
+                });
+
+                person.modal.closeModal();
+
+                var container = document.getElementById('content');
+                var view = person.getView();
+                container.appendChild(view);
+
+            }
+            function edit(id) {
+                var person2Edit = people.find(findPersonById);
+                function findPersonById(person) {
+                    return person.uuid === id;
+                }
+                var modal = new Dialog(uuid(), updatePersonHandler, person2Edit);
+                modal.showModal();
+            }
+
+            function updatePersonHandler(e) {
+                var person = e.detail;
+                person.modal.closeModal();
+
+                console.log(person);
+                var container = document.getElementById('content');
+                var id = person.uuid;
+                var oldNode = document.getElementById(id).parentNode.replaceChild(person.getView(), document.getElementById(id));
+
+            }
+        </script>
+
+    </body>
+</html>

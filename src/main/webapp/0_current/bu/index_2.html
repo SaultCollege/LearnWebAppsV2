@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Learn Web App Dev</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href="../node_modules/material-components-web/dist/material-components-web.css">
+
+        <script src="../node_modules/material-components-web/dist/material-components-web.js" charset="utf-8"></script>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="../js/libs/jquery/jquery.min.js"></script>
+        <style>
+            .grid1 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 16px;
+                background-color: #eeeeee;
+            }
+            .cell_style1{
+                background-color: #cccccc;
+            }
+            .max-width {
+                max-width: 1400px;
+            }
+            /* Ensure layout covers the entire screen. */
+            html {
+                height: 100%;
+            }
+
+            /* Ensure layout covers the entire screen. */
+            html {
+                height: 100%;
+            }
+
+            /* Place drawer and content side by side. */
+            .demo-body {
+                display: flex;
+                flex-direction: row;
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+            }
+
+            /* Stack toolbar and main on top of each other. */
+            .demo-content {
+                display: inline-flex;
+                flex-direction: column;
+                flex-grow: 1;
+                height: 100%;
+                box-sizing: border-box;
+            }
+
+            .demo-main {
+                padding-left: 16px;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    </head>
+    <body class="demo-body mdc-typography">
+        <aside class="mdc-persistent-drawer">
+            <nav class="mdc-persistent-drawer__drawer">
+                <div class="mdc-persistent-drawer__toolbar-spacer">
+                    <a class="mdc-list-item mdc-persistent-drawer--selected" href="index.html">
+                        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">home</i>
+                    </a>
+                </div>
+                <div class="mdc-list-group">CSS
+                    <nav class="mdc-list">
+                        <a class="mdc-list-item" href="p01x.html">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true"></i>Including Styles
+                        </a>
+                    </nav>
+
+                </div>
+                <div class="mdc-list-group">Javascript
+                    <nav class="mdc-list">
+                        <a class="mdc-list-item" href="p02.html">
+                            <i class="material-icons mdc-list-item__start-detail" aria-hidden="true"></i>Including Javascript
+                        </a>
+                    </nav>
+                </div>
+            </nav>
+        </aside>
+        <div class="demo-content">
+            <header class="mdc-toolbar mdc-elevation--z4">
+                <div class="mdc-toolbar__row">
+                    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                        <button class="demo-menu material-icons mdc-toolbar__icon--menu">menu</button>
+                        <span class="mdc-toolbar__title catalog-title">Learn Web App Development</span>
+                    </section>
+                </div>
+            </header>
+
+            <main class="demo-main">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone">
+                        <span class="mdc-typography--display1">A collection of learning resources</span>
+                    </div>
+                </div>
+                <div class="mdc-layout-grid">
+                    <div class="
+                         mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 
+                         mdc-layout-grid__cell--span-4-phone">
+                        <span class="mdc-typography--display1 mdc-typography--adjust-margin">Link to an external stylesheet</span>
+                    </div>
+                    <div class="
+                         mdc-layout-grid__cell mdc-layout-grid__cell--span-12
+                         mdc-layout-grid__cell--span-4-phone">
+    <pre>
+<code>
+&lt;head&gt;
+    &lt;link rel="stylesheet" type="text/css" href="/LearnJavascript_mvn/resources/css/myLayout.css"&gt;
+&lt;/head&gt;
+</code>
+    </pre>
+                    </div>
+                </div>
+            </main>
+
+            <script src="../node_modules/material-components-web/dist/material-components-web.js" charset="utf-8"></script>
+            <script>
+                var drawerEl = document.querySelector('.mdc-persistent-drawer');
+                var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
+                var drawer = new MDCPersistentDrawer(drawerEl);
+                document.querySelector('.demo-menu').addEventListener('click', function () {
+                    drawer.open = !drawer.open;
+                });
+                drawerEl.addEventListener('MDCPersistentDrawer:open', function () {
+                    console.log('Received MDCPersistentDrawer:open');
+                });
+                drawerEl.addEventListener('MDCPersistentDrawer:close', function () {
+                    console.log('Received MDCPersistentDrawer:close');
+                });
+            </script>
+        </div>
+    </body>
+</html>

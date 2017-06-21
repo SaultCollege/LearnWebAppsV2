@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Learn Javascript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- use templates see https://www.w3schools.com/howto/howto_html_include.asp -->
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="resources/css/myLayout.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+
+        <link rel="stylesheet" href="resources/libraries/highlight/styles/default.css">
+        <script src="resources/libraries/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            function myFunction() {
+                alert('This script was executed from the head');
+            }
+        </script>
+        <script src="resources/js/p2/main.js"></script>
+    </head>
+    <body>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>Wombats'</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>JS: Including Javascript</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+                    <div style="text-align: left">
+                        <h2>In the head</h2>
+                        <pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;script&gt;
+    function myFunction() {
+        alert('This script was executed from the head');
+    }
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;My Web Page&lt;/h1&gt;
+
+&lt;p id="demo"&gt;A Paragraph&lt;/p&gt;
+
+&lt;button type="button" onclick="myFunction()"&gt;Execute head script&lt;/button&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+                        </pre>
+                        <div>
+                            <button type="button" onclick="myFunction()">Execute head script</button>
+                        </div>
+                    </div>
+                    <div class="spacer"></div>
+                    <div style="text-align: left">
+                        <h2>In the body</h2>
+                        <pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt; 
+
+&lt;h1&gt;My Web Page&lt;/h1&gt;
+
+&lt;p id="demo"&gt;A Paragraph&lt;/p&gt;
+
+&lt;button type="button" onclick="myFunction2()"&gt;Execute body script&lt;/button&gt;
+
+&lt;script&gt;
+function myFunction2() {
+   alert('This script was executed from the body');
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+                        </pre>
+                        <div>
+                            <button type="button" onclick="myFunction2()">Execute body script</button>
+                        </div>
+
+
+                        <div class="spacer"></div>
+                        <div style="text-align: left">
+                            <h2>Load in external script</h2>
+                            <pre>
+    <code>
+&lt;script src="resources/js/p2/main.js">&lt;/script>
+    </code>
+                            </pre>
+                            <h3>main.js</h3>
+                            <pre>
+    <code>
+/* 
+ */
+
+function xfunc1(){
+    alert("External Function");
+}
+
+    </code>
+                            </pre>
+                            <h3>call xfunc1()</h3>
+                            <pre>
+    <code>
+&lt;button onclick="xfunc1();">call xfunc1()&lt;/button>
+    </code>
+                            </pre>
+                            <button onclick="xfunc1();">call xfunc1()</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">          
+                        <div class="col-2">
+                            wombat software
+                        </div>
+                        <div class="col-2">
+                            <div style="text-align: center">
+                                Footer
+                            </div>
+                        </div> 
+                        <div class="col-2" style="text-align: right">
+                            Copyright
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function myFunction2() {
+                alert('This script was executed from the body');
+            }
+        </script>
+    </body>
+</html>

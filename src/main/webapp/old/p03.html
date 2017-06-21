@@ -1,133 +1,69 @@
 <!DOCTYPE html>
 <!--
-http://material-components-web.appspot.com/drawer/temporary-drawer.html
-
-  Copyright 2016 Google Inc. All rights reserved.
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
 -->
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>Learn Web App Dev</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Learn Javascript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- use templates see https://www.w3schools.com/howto/howto_html_include.asp -->
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <!-- import css -->
+        <link rel="stylesheet" type="text/css" href="resources/css/myLayout.css">
+        <!-- fonts see https://fonts.google.com/specimen/Roboto?selection.family=Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
 
-        <script src="node_modules/material-components-web/dist/material-components-web.js" charset="utf-8"></script>
-        <script src="demo-styles.css.js" charset="utf-8"></script>
-
-
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <style>
-            .grid1 {
-                --mdc-layout-grid-margin: 40px;
-                --mdc-layout-grid-gutter: 16px;
-                background-color: #eeeeee;
-            }
-            .cell_style1{
-                background-color: #cccccc;
-            }
-            .max-width {
-                max-width: 1400px;
-            }
-
-            .demo-body {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-            }
-
-            .demo-main {
-                padding-left: 16px;
-                overflow: auto;
-            }
-        </style>
         <link rel="stylesheet" href="resources/libraries/highlight/styles/default.css">
         <script src="resources/libraries/highlight/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            function myFunction() {
+                alert('This script was executed from the head');
+            }
+        </script>
         <script>
             function setLoginName(n) {
                 var el = document.querySelector("div.user-panel.main input[name=login]");
                 el.value = n;
             }
         </script>
-
+        <script src="resources/js/p2/main.js"></script>
     </head>
-    <body class="mdc-typography demo-body">
-        <div class="mdc-toolbar mdc-toolbar--fixed">
-            <div class="mdc-toolbar__row">
-                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                    <button class="demo-menu material-icons mdc-toolbar__icon--menu">menu</button>
-                    <span class="mdc-toolbar__title catalog-title">Learn Web App Development</span>
-                </section>
+    <body>
+        <div id="container" class="grid-container outline">
+            <div class="row" style="max-height: 100px;min-height: 50px">
+                <div class="col-6">
+                    <!-- https://www.w3schools.com/howto/howto_html_include.asp -->
+                    <div class="col-1">
+                        <h1>Wombats'</h1>
+
+                    </div>
+                    <div class="col-4" style="">
+                        <h1>JS: Including Javascript</h1>
+                    </div>
+
+                    <div class="col-1" style="text-align: right">
+                        <h1>Signin</h1>
+                    </div>
+
+                </div>
             </div>
-        </div>
-
-        <aside class="mdc-temporary-drawer">
-            <nav class="mdc-temporary-drawer__drawer">
-                <header class="mdc-temporary-drawer__header">
-                    <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
-                        <a class="mdc-list-item" href="index.html">
-                            <i class="material-icons" aria-hidden="true">home</i>
-                        </a>
-
-                    </div>
-                </header>
-                <nav class="mdc-temporary-drawer__content mdc-list-group">
-                    <div class="mdc-list">
-                        <h3>CSS</h3>
-                    </div>
-                    <hr class="mdc-list-divider">
-                    <div class="mdc-list">
-                        <a class="mdc-list-item" href="p01.html">
-                            Including Styles
-                        </a>
-                    </div>
-
-
-                    <div class="mdc-list">
-                        <h3>Javascript</h3>
-                    </div>
-                    <hr class="mdc-list-divider">
-                    <div class="mdc-list">
-                        <a class="mdc-list-item" href="p02.html">
-                            Including Javascript
-                        </a>
-                    </div>
-                </nav>
-            </nav>
-        </aside>
-        <main class="demo-main mdc-toolbar-fixed-adjust">
-                <div class="mdc-layout-grid">
-                    <div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone">
-                        <span class="mdc-typography--display1">MDN Number Guessing Game</span>
-                    </div>
-                    
-                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone">
-                    <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/A_first_splash">based on this Tutorial...</a>
+            <div class="row">
+                <div class="col-1">
                 </div>
+                <div class="col-5">
+                    <a href="index.html">Back...</a>
                 </div>
-                <div class="mdc-layout-grid">
-                    <div class="
-                         mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 
-                         mdc-layout-grid__cell--span-4-phone">
-                        <span class="mdc-typography--display1 mdc-typography--adjust-margin">
-                            Number Guessing Game
-                        </span>
-                    </div>
-                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12
-                         mdc-layout-grid__cell--span-4-phone">
-
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+<div style="text-align: left">
+    <h2>Number Guessing Game</h2>
     <p>Run <a target="_blank" href="p03/numberGuessingGame.html">numberGuessingGame.html...</a></p>
     <div class="spacer"></div>
     <h3>Notes</h3>
@@ -318,30 +254,89 @@ guesses.style.boxShadow = '3px 3px 6px black';
             </pre>
         </li>
         
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
+        
+        <li> See <a href="">documentation...</a></li>
+        <li style="display: block;">
+            <pre>
+<code>
+</code>
+            </pre>
+        </li>
         
     </ul>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div>
+        <button type="button" onclick="myFunction()">Execute head script</button>
+    </div>
 </div>
 
-                    
+<div class="spacer"></div>
+
+<div style="text-align: left">
+    <h2>In the body</h2>
+    <pre>
+<code>
+</code>
+    </pre>
+    <div>
+        <button type="button" onclick="myFunction2()">Execute body script</button>
+    </div>
+</div>
+
                 </div>
-
-        </main>
+                <div class="row">
+                    <div class="col-6">          
+                        <div class="col-2">
+                            wombat software
+                        </div>
+                        <div class="col-2">
+                            <div style="text-align: center">
+                                Footer
+                            </div>
+                        </div> 
+                        <div class="col-2" style="text-align: right">
+                            Copyright
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script>
-        </script>
-
-        <script>
-            var drawerEl = document.querySelector('.mdc-temporary-drawer');
-            var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
-            var drawer = new MDCTemporaryDrawer(drawerEl);
-            document.querySelector('.demo-menu').addEventListener('click', function () {
-                drawer.open = true;
-            });
-            drawerEl.addEventListener('MDCTemporaryDrawer:open', function () {
-                console.log('Received MDCTemporaryDrawer:open');
-            });
-            drawerEl.addEventListener('MDCTemporaryDrawer:close', function () {
-                console.log('Received MDCTemporaryDrawer:close');
-            });
+            function myFunction2() {
+                alert('This script was executed from the body');
+            }
         </script>
     </body>
 </html>

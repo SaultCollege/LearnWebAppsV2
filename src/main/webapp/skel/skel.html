@@ -21,7 +21,9 @@ http://material-components-web.appspot.com/drawer/temporary-drawer.html
         <meta charset="utf-8">
         <title>Learn Web App Dev</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="node_modules/material-components-web/dist/material-components-web.js" charset="utf-8"></script>
+        <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+
+        <script src="../node_modules/material-components-web/dist/material-components-web.js" charset="utf-8"></script>
         <script src="demo-styles.css.js" charset="utf-8"></script>
 
 
@@ -51,6 +53,16 @@ http://material-components-web.appspot.com/drawer/temporary-drawer.html
                 overflow: auto;
             }
         </style>
+        <link rel="stylesheet" href="../resources/libraries/highlight/styles/default.css">
+        <script src="../resources/libraries/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            function myFunction() {
+                alert('This script was executed from the head');
+            }
+        </script>
+        <script src="../resources/js/p2/main.js"></script>
+
     </head>
     <body class="mdc-typography demo-body">
         <div class="mdc-toolbar mdc-toolbar--fixed">
@@ -93,39 +105,47 @@ http://material-components-web.appspot.com/drawer/temporary-drawer.html
                             Including Javascript
                         </a>
                     </div>
-                    <div class="mdc-list">
-                        <a class="mdc-list-item" href="p03.html">
-                            Tutorial (Guessing Game)
-                        </a>
-                    </div>
-                    <div class="mdc-list">
-                        <a class="mdc-list-item" href="p04.html">
-                            Selectors
-                        </a>
-                    </div>
                 </nav>
             </nav>
         </aside>
         <main class="demo-main mdc-toolbar-fixed-adjust">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone">
-                        <span class="mdc-typography--display1">A collection of learning resources</span>
+                        <span class="mdc-typography--display1">text</span>
                     </div>
                 </div>
                 <div class="mdc-layout-grid">
                     <div class="
                          mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 
                          mdc-layout-grid__cell--span-4-phone">
-                        <span class="mdc-typography--display1 mdc-typography--adjust-margin">CSS</span>
+                        <span class="mdc-typography--display1 mdc-typography--adjust-margin">
+                            text
+                        </span>
                     </div>
-                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12
+                         mdc-layout-grid__cell--span-4-phone">
                     </div>
+                    
+                    <div class="
+                         mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 
+                         mdc-layout-grid__cell--span-4-phone">
+                        <span class="mdc-typography--display1 mdc-typography--adjust-margin">
+                            text
+                        </span>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12
+                                                  mdc-layout-grid__cell--span-4-phone">
+                        <span class="mdc-typography--display1 mdc-typography--adjust-margin">
+                            text
+                        </span>
+                    </div>
+                    
+                    
                 </div>
-                <div id='content' class="mdc-layout-grid">
-                    <div class="mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone"><span class="mdc-typography--display1 mdc-typography--adjust-margin">Javascript</span></div>
 
-                </div>
         </main>
+        <script>
+        </script>
 
         <script>
             var drawerEl = document.querySelector('.mdc-temporary-drawer');
