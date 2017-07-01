@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>App Series A</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- ICONS http://www.favicon-generator.org/ -->
+        <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+        <link rel="manifest" href="icons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <!-- ICONS http://www.favicon-generator.org/ -->
+
+        <script src="node_modules/material-components-web/dist/material-components-web.js" charset="utf-8"></script>
+        <link rel="stylesheet" type="text/css" href="node_modules/material-components-web/dist/material-components-web.css">
+
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+        <style>
+            .grid1 {
+                --mdc-layout-grid-margin: 40px;
+                --mdc-layout-grid-gutter: 16px;
+                background-color: #eeeeee;
+            }
+            .cell_style1{
+                background-color: #cccccc;
+            }
+            .max-width {
+                max-width: 1400px;
+            }
+
+        </style>
+
+    </head>
+    <body class="mdc-typography">
+
+        <div class="mdc-toolbar mdc-toolbar--fixed">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <button class="menu material-icons mdc-toolbar__icon--menu">menu</button>
+                    <span class="mdc-toolbar__title catalog-title">app.A</span>
+                </section>
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+                    <h6>app.A</h6>
+                </section>
+            </div>
+        </div>
+        <main class="mdc-toolbar-fixed-adjust">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone">
+                    <span class="mdc-typography--display1">App Series A</span>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone">
+                    <a href='https://material.io/components/web/catalog/drawers/'>A Material temporary drawer...</a>
+                </div>
+                
+            </div>
+            <div class="mdc-layout-grid">
+                <div class="
+                     mdc-layout-grid__cell cell_style1 mdc-layout-grid__cell--span-12 
+                     mdc-layout-grid__cell--span-4-phone">
+                    <span class="mdc-typography--display1 mdc-typography--adjust-margin">Header 1</span>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                </div>
+            </div>
+            <div id='content' class="mdc-layout-grid">
+                <div class="
+                     mdc-layout-grid__cell 
+                     cell_style1 mdc-layout-grid__cell--span-12 
+                     mdc-layout-grid__cell--span-4-phone">
+                    <span class="mdc-typography--display1 mdc-typography--adjust-margin">Header 2</span>
+                </div>
+
+            </div>
+        </main>        
+
+        <aside class="mdc-temporary-drawer mdc-typography">
+            <nav class="mdc-temporary-drawer__drawer">
+                <header class="mdc-temporary-drawer__header">
+                    <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
+                        <a class="mdc-list-item" href="index.html">
+                            <i class="material-icons" aria-hidden="true">home</i>
+                        </a>
+
+                    </div>
+                </header>
+                <nav class="mdc-temporary-drawer__content mdc-list-group">
+                    <div class="mdc-list">
+                        <h3>Header</h3>
+                    </div>
+                    <hr class="mdc-list-divider">
+                    <div class="mdc-list">
+                        <a class="mdc-list-item" href="#">
+                            Page 1
+                        </a>
+                    </div>
+
+
+                    <div class="mdc-list">
+                        <h3>Header</h3>
+                    </div>
+                    <hr class="mdc-list-divider">
+                    <div class="mdc-list">
+                        <a class="mdc-list-item" href="#">
+                            Page 2
+                        </a>
+                    </div>
+                    <div class="mdc-list">
+                        <a class="mdc-list-item" href="#">
+                            Page 3
+                        </a>
+                    </div>
+                    <div class="mdc-list">
+                        <a class="mdc-list-item" href="#">
+                            Page 4
+                        </a>
+                    </div>
+                </nav>
+            </nav>
+        </aside>
+        <script>
+            var drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector('.mdc-temporary-drawer'));
+            document.querySelector('.menu').addEventListener('click', () => drawer.open = true);
+        </script>
+    </body>
+</html>
